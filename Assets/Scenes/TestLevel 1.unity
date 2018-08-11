@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InventoryUI: {fileID: 1829794978}
+  weapon: {fileID: 11400000, guid: 085fc19f34d6c594d95b851182921219, type: 2}
 --- !u!1001 &531552583
 Prefab:
   m_ObjectHideFlags: 0

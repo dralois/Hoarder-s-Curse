@@ -58,9 +58,11 @@ public class InventoryManager : MonoBehaviour {
     /// <returns>True, wenn es vorhanden war; false, wenn nicht</returns>
     public bool RemoveItem(InventoryItem item)
     {
-        if (_inventory[item.itemType] == null)
+        List<InventoryItem> items;
+
+        if (!_inventory.TryGetValue(item.itemType, out items))
         {
-            _inventory[item.itemType] = new List<InventoryItem>();
+            _inventory.Add(item.itemType, new List<InventoryItem>());
         }
 
         if (_inventory[item.itemType].Contains(item))
