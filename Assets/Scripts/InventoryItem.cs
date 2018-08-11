@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class InventoryItem : ScriptableObject {
+public abstract class InventoryItem : ScriptableObject {
 
     public enum ItemType : uint
     {
@@ -13,4 +13,8 @@ public class InventoryItem : ScriptableObject {
 
     public readonly ItemType itemType;
 
+    protected InventoryItem(ItemType itemType)
+    {
+        this.itemType = itemType;
+    }
 }
