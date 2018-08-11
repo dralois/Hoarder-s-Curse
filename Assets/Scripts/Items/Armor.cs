@@ -3,7 +3,7 @@
 namespace Assets.Scripts
 {
     [CreateAssetMenu(fileName = "Armor", menuName = "Inventory/Armor", order = 5)]
-    class Armor : InventoryItem
+    public class Armor : InventoryItem
     {
         public enum ArmorType : uint
         {
