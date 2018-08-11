@@ -2,13 +2,12 @@
 
 public class Camera : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
+    [SerializeField]
+    private Transform target;
+    [SerializeField]
+    private float lerpSpeed;
+
 	void Update () {
-		
+        transform.SetPositionAndRotation(Vector3.Lerp(transform.position, target.position, lerpSpeed), Quaternion.identity);
 	}
 }
