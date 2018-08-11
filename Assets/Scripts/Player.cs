@@ -41,7 +41,9 @@ public class Player : MonoBehaviour {
         ContactPoint2D[] arr = new ContactPoint2D[10];
         contacts = gameObject.GetComponent<Collider2D>().GetContacts(arr);
         // If number of horizontal contact points greater zero no movement allowed
-        if (arr.Take(contacts).LongCount(curr => Mathf.Sign(curr.normal.x) == -Mathf.Sign(moveDir) && Mathf.Abs(curr.normal.x) > .5f) == 0)
+        if (arr.Take(contacts).LongCount(curr =>Mathf.Sign(curr.normal.x) == -Mathf.Sign(moveDir) &&
+                                                Mathf.Abs(curr.normal.x) > .5f &&
+                                                curr.collider.tag == "Wall") == 0)
         {
             // Move along the horizontal axis
             transform.Translate(Vector3.right * moveDir * moveSpeed * Time.deltaTime);
