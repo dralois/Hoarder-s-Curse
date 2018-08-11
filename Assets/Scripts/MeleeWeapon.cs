@@ -1,17 +1,20 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "MeleeWeapon", menuName = "Inventory/MeleeWeapon", order = 3)]
-public class MeleeWeapon : InventoryItem
+namespace Assets.Scripts
 {
-    public enum MeleeWeaponType : uint
+    [CreateAssetMenu(fileName = "MeleeWeapon", menuName = "Inventory/MeleeWeapon", order = 3)]
+    public class MeleeWeapon : InventoryItem
     {
-        Sword = 0,
-        Lance = 1
+        public enum MeleeWeaponType : uint
+        {
+            Sword = 0,
+            Lance = 1
+        }
+
+        public MeleeWeaponType meleeWeaponType;
+        public int damage;
+        public float range;
+
+        public MeleeWeapon() : base(ItemType.MeleeWeapon) { }
     }
-
-    public MeleeWeaponType meleeWeaponType;
-    public int damage;
-    public float range;
-
-    public MeleeWeapon() : base(ItemType.MeleeWeapon) { }
 }
