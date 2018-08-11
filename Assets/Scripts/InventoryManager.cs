@@ -8,7 +8,7 @@ public class InventoryManager : MonoBehaviour {
     [SerializeField]
     private readonly uint _maxInventoryCount;
 
-    private Dictionary<uint, List<InventoryItem>> _inventory = null;
+    private Dictionary<InventoryItem.ItemType, List<InventoryItem>> _inventory = null;
     private uint _totalInventoryCount = 0;
 
     public static InventoryManager Instance
@@ -21,7 +21,7 @@ public class InventoryManager : MonoBehaviour {
             return _instance;
         }
     }
-    public Dictionary<uint, List<InventoryItem>> Inventory
+    public Dictionary<InventoryItem.ItemType, List<InventoryItem>> Inventory
     {
         get
         {
@@ -35,14 +35,14 @@ public class InventoryManager : MonoBehaviour {
     /// <returns>True, wenn es hinzugefügt wurde; false, wenn <see cref="_maxInventoryCount"/> erreicht wurde</returns>
     public bool AddItem(InventoryItem item)
     {
-        if (_inventory[item.uID] == null)
+        if (_inventory[item.itemType] == null)
         {
-            _inventory[item.uID] = new List<InventoryItem>();
+            _inventory[item.itemType] = new List<InventoryItem>();
         }
 
         if (_totalInventoryCount < _maxInventoryCount)
         {
-            _inventory[item.uID].Add(item);
+            _inventory[item.itemType].Add(item);
             _totalInventoryCount++;
             return true;
         }
@@ -58,14 +58,14 @@ public class InventoryManager : MonoBehaviour {
     /// <returns>True, wenn es vorhanden war; false, wenn nicht</returns>
     public bool RemoveItem(InventoryItem item)
     {
-        if (_inventory[item.uID] == null)
+        if (_inventory[item.itemType] == null)
         {
-            _inventory[item.uID] = new List<InventoryItem>();
+            _inventory[item.itemType] = new List<InventoryItem>();
         }
 
-        if (_inventory[item.uID].Contains(item))
+        if (_inventory[item.itemType].Contains(item))
         {
-            _inventory[item.uID].Remove(item);
+            _inventory[item.itemType].Remove(item);
             _totalInventoryCount--;
             return true;
         }
@@ -81,6 +81,6 @@ public class InventoryManager : MonoBehaviour {
 
     private InventoryManager()
     {
-        _inventory = new Dictionary<uint, List<InventoryItem>>();
+        _inventory = new Dictionary<InventoryItem.ItemType, List<InventoryItem>>();
     }
 }
