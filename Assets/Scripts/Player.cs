@@ -38,14 +38,16 @@ public class Player : MonoBehaviour {
         playerRenderer.flipX = moveDir < 0;
         // Get contact points
         ContactPoint2D[] arr = new ContactPoint2D[10];
-        int contacts = playerCollider.GetContacts(arr);
+        int allContacts = playerCollider.GetContacts(arr);
+        // Count only ground contacts
+        int contactCount = arr.Take(allContacts).Count(curr => curr.collider.tag != "Wall");
         // Move horizontally
         playerRB.velocity = new Vector2(moveDir * moveSpeed, playerRB.velocity.y);    
         // Handle jump
         if (Input.GetButtonDown("Jump"))
         {
             // If contacts or no vertical velocity then apply force
-            if(playerRB.velocity.y == 0 || contacts > 0)
+            if(playerRB.velocity.y == 0 || contactCount > 0)
                 playerRB.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse); 
         }
     }
