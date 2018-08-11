@@ -10,26 +10,25 @@ public class Player : MonoBehaviour {
     private float jumpSpeed;
     [SerializeField]
     private float jumpHeight; 
-
-    // SpriteRenderer for adjusting animation
+    
     private SpriteRenderer playerRenderer;
-    private Animator playerAnim;
-    // Jumping vars
-    private float jumpTarget;
-    private float gravityScale;
-
-    [SerializeField]
-    private int contacts;
+    private Collider2D playerCollider;
+    private Rigidbody2D playerRB;
+    private Animator playerAnim;    
 
     private void Start()
     {
         // Retrieve renderer
         playerRenderer = gameObject.GetComponent<SpriteRenderer>();
+        // Retrieve collider
+        playerCollider = gameObject.GetComponent<Collider2D>();
+        // Retrieve RB
+        playerRB = gameObject.GetComponent<Rigidbody2D>();
         // Retrieve animator
         playerAnim = gameObject.GetComponent<Animator>();
     }
 
-    void Update ()
+    void Update()
     {
         // Get current input direction
         float moveDir = Input.GetAxis("Horizontal");
@@ -39,47 +38,15 @@ public class Player : MonoBehaviour {
         playerRenderer.flipX = moveDir < 0;
         // Get contact points
         ContactPoint2D[] arr = new ContactPoint2D[10];
-        contacts = gameObject.GetComponent<Collider2D>().GetContacts(arr);
-        // If number of horizontal contact points greater zero no movement allowed
-        if (arr.Take(contacts).LongCount(curr =>Mathf.Sign(curr.normal.x) == -Mathf.Sign(moveDir) &&
-                                                Mathf.Abs(curr.normal.x) > .5f &&
-                                                curr.collider.tag == "Wall") == 0)
+        int contacts = playerCollider.GetContacts(arr);
+        // Move horizontally
+        playerRB.velocity = new Vector2(moveDir * moveSpeed, playerRB.velocity.y);    
+        // Handle jump
+        if (Input.GetButtonDown("Jump"))
         {
-            // Move along the horizontal axis
-            transform.Translate(Vector3.right * moveDir * moveSpeed * Time.deltaTime);
+            // If contacts or no vertical velocity then apply force
+            if(playerRB.velocity.y == 0 || contacts > 0)
+                playerRB.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse); 
         }
-        // Smooth jump if remaining distance
-        if(jumpTarget > 0)
-        {
-            // Calculate jump translation
-            Vector3 translation = Vector3.up * jumpSpeed * Time.deltaTime;
-            // If target reached
-            if(jumpTarget - translation.magnitude < 0)
-            {
-                // Reapply gravity
-                gameObject.GetComponent<Rigidbody2D>().gravityScale = gravityScale;
-                // Move upwards
-                transform.Translate(Vector3.up * jumpTarget);
-                jumpTarget = 0;
-            }
-            else
-            {
-                // Move up, adjust remaining distance
-                jumpTarget -= translation.magnitude;
-                transform.Translate(translation);
-            }
-        }
-        // Otherwise check for jump
-        else
-        {
-            if (Input.GetButtonDown("Jump"))
-            {
-                // Set target, save gravity scale, disable gravity
-                jumpTarget = jumpHeight;
-                gravityScale = gameObject.GetComponent<Rigidbody2D>().gravityScale;
-                gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
-            }
-        }
-
-	}
+    }
 }
