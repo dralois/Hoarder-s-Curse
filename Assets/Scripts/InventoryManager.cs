@@ -28,6 +28,7 @@ public class InventoryManager : MonoBehaviour {
             return _inventory;
         }
     }
+
     /// <summary>
     /// Fügt ein Item hinzu, wenn das Inventory noch nicht voll ist
     /// </summary>
@@ -51,6 +52,7 @@ public class InventoryManager : MonoBehaviour {
             return false;
         }
     }
+
     /// <summary>
     /// Löscht ein item aus dem Inventory, wenn es vorhanden ist.
     /// </summary>
@@ -74,6 +76,7 @@ public class InventoryManager : MonoBehaviour {
             return false;
         }
     }
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
