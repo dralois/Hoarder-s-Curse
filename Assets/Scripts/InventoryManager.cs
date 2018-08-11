@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public class InventoryManager : MonoBehaviour {
@@ -9,8 +8,9 @@ public class InventoryManager : MonoBehaviour {
     [SerializeField]
     private readonly uint _maxInventoryCount;
 
-    private Dictionary<uint,List<InventoryItem>> _inventory = new Dictionary<uint,List<InventoryItem>>();
+    private Dictionary<uint, List<InventoryItem>> _inventory = null;
     private uint _totalInventoryCount = 0;
+
     public static InventoryManager Instance
     {
         get
@@ -81,5 +81,6 @@ public class InventoryManager : MonoBehaviour {
 
     private InventoryManager()
     {
+        _inventory = new Dictionary<uint, List<InventoryItem>>();
     }
 }
