@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 
 public class Player : MonoBehaviour {
@@ -11,7 +9,7 @@ public class Player : MonoBehaviour {
     [SerializeField]
     private float jumpSpeed;
     [SerializeField]
-    private float jumpHeight;
+    private float jumpHeight; 
 
     // SpriteRenderer for adjusting animation
     private SpriteRenderer playerRenderer;

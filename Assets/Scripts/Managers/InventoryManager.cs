@@ -15,12 +15,10 @@ public class InventoryManager : MonoBehaviour {
     {
         get
         {
-            if (_instance == null)
-                _instance = new InventoryManager();
-
             return _instance;
         }
     }
+
     public Dictionary<InventoryItem.ItemType, List<InventoryItem>> Inventory
     {
         get
@@ -79,11 +77,14 @@ public class InventoryManager : MonoBehaviour {
 
     private void Awake()
     {
-        DontDestroyOnLoad(this);
-    }
-
-    private InventoryManager()
-    {
-        _inventory = new Dictionary<InventoryItem.ItemType, List<InventoryItem>>();
+        if (_instance == null)
+        {
+            _instance = this;
+            _inventory = new Dictionary<InventoryItem.ItemType, List<InventoryItem>>();
+        }        
+        else if (_instance != this)
+            Destroy(gameObject);
+        
+        DontDestroyOnLoad(gameObject);
     }
 }
