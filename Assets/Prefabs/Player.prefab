@@ -139,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   jumpSpeed: 20
-  jumpHeight: 1.5
+  jumpHeight: 2
   contacts: 0
 --- !u!212 &212449819902347070
 SpriteRenderer:
