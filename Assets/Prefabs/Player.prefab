@@ -139,7 +139,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   jumpSpeed: 15
-  jumpHeight: 2
+  health: 1
+  reduction: 1
+  healthSize: {fileID: 0}
+  healthText: {fileID: 0}
 --- !u!212 &212449819902347070
 SpriteRenderer:
   m_ObjectHideFlags: 1

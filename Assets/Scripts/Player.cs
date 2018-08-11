@@ -1,15 +1,24 @@
-﻿using UnityEngine;
+﻿using UnityEngine.UI;
+using UnityEngine;
 using System.Linq;
 
 public class Player : MonoBehaviour {
 
-    [Header("Specs")]
+    [Header("Movement")]
     [SerializeField]
     private float moveSpeed;
     [SerializeField]
     private float jumpSpeed;
+    [Header("Stats")]
     [SerializeField]
-    private float jumpHeight; 
+    private float health;
+    [SerializeField]
+    private float reduction;
+    [Header("Objects")]
+    [SerializeField]
+    private RectTransform healthSize;
+    [SerializeField]
+    private Text healthText;
     
     private SpriteRenderer playerRenderer;
     private Collider2D playerCollider;
@@ -28,7 +37,7 @@ public class Player : MonoBehaviour {
         playerAnim = gameObject.GetComponent<Animator>();
     }
 
-    void Update()
+    private void Update()
     {
         // Get current input direction
         float moveDir = Input.GetAxis("Horizontal");
@@ -50,5 +59,16 @@ public class Player : MonoBehaviour {
             if(playerRB.velocity.y == 0 || contactCount > 0)
                 playerRB.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse); 
         }
+    }
+
+    public void ApplyDamage(float amount)
+    {
+        if(health - amount > 0)        
+            health -= amount * reduction;        
+        else        
+            health = 0;
+        
+        healthSize.localScale = new Vector3(health, 1, 1);
+        healthText.text = Mathf.Round(health * 100) + "%";
     }
 }
