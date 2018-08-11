@@ -5,9 +5,7 @@ public class InventoryManager : MonoBehaviour {
 
     private static InventoryManager _instance = null;
 
-    [SerializeField]
-    private readonly uint _maxInventoryCount;
-
+    public uint _maxInventoryCount;
     private Dictionary<InventoryItem.ItemType, List<InventoryItem>> _inventory = null;
     private uint _totalInventoryCount = 0;
 
@@ -34,9 +32,11 @@ public class InventoryManager : MonoBehaviour {
     /// <returns>True, wenn es hinzugefügt wurde; false, wenn <see cref="_maxInventoryCount"/> erreicht wurde</returns>
     public bool AddItem(InventoryItem item)
     {
-        if (_inventory[item.itemType] == null)
+        List<InventoryItem> items;
+
+        if (!_inventory.TryGetValue(item.itemType, out items))
         {
-            _inventory[item.itemType] = new List<InventoryItem>();
+            _inventory.Add(item.itemType, new List<InventoryItem>());
         }
 
         if (_totalInventoryCount < _maxInventoryCount)

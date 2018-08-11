@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 93a652f211752d94cb71cb83b2677283
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - InventoryUI: {fileID: 223909708258995972, guid: 2007fedf9db7f214fa85dc77cec8fd9b,
+      type: 2}
+  - weapon: {fileID: 11400000, guid: 085fc19f34d6c594d95b851182921219, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
