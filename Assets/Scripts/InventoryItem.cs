@@ -12,6 +12,7 @@ public abstract class InventoryItem : ScriptableObject {
     }
 
     public readonly ItemType itemType;
+    public string itemName;
 
     protected InventoryItem(ItemType itemType)
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "MeleeWeapon", menuName = "Inventory/MeleeWeapon", order = 1)]
+[CreateAssetMenu(fileName = "MeleeWeapon", menuName = "Inventory/MeleeWeapon", order = 3)]
 public class MeleeWeapon : InventoryItem
 {
     public enum MeleeWeaponType : uint
@@ -11,6 +11,7 @@ public class MeleeWeapon : InventoryItem
 
     public MeleeWeaponType meleeWeaponType;
     public int damage;
+    public float range;
 
     public MeleeWeapon() : base(ItemType.MeleeWeapon) { }
 }
