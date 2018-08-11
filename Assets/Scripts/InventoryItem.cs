@@ -2,6 +2,6 @@
 
 public class InventoryItem : ScriptableObject {
 
-    public int Damage;
+    public readonly uint uID;
 
 }
