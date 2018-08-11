@@ -53,7 +53,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 256
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -106,7 +106,7 @@ TextureImporter:
         - {x: -128, y: -128}
         - {x: 128, y: -128}
         - {x: 128, y: 128}
-      tessellationDetail: 0
+      tessellationDetail: 1
       bones: []
       spriteID: fa3bc0cc9bb399f45949e2301a49fe67
       vertices: []
@@ -129,8 +129,6 @@ TextureImporter:
       - - {x: -128, y: 128}
         - {x: -128, y: -128}
         - {x: 128, y: -128}
-        - {x: 128, y: -127}
-        - {x: -127, y: 128}
       tessellationDetail: 0
       bones: []
       spriteID: c0c8d37fba475d940885a0b06269ba2f
@@ -151,9 +149,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: 127, y: 128}
-        - {x: -128, y: -127}
-        - {x: -128, y: -128}
+      - - {x: -128, y: -128}
         - {x: 128, y: -128}
         - {x: 128, y: 128}
       tessellationDetail: 0
@@ -200,11 +196,9 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -127, y: 1}
+      - - {x: 128, y: -128}
         - {x: -128, y: 1}
         - {x: -128, y: -128}
-        - {x: 128, y: -128}
-        - {x: 128, y: -127}
       tessellationDetail: 0
       bones: []
       spriteID: 606c69586a964da4fb9cfb2f2e5f1799
@@ -227,9 +221,7 @@ TextureImporter:
       physicsShape:
       - - {x: -128, y: -128}
         - {x: 128, y: -128}
-        - {x: 128, y: 0}
-        - {x: 125, y: 0}
-        - {x: -128, y: -127}
+        - {x: 128, y: 1}
       tessellationDetail: 0
       bones: []
       spriteID: 5707c53bba20cb84b8798133380f658a

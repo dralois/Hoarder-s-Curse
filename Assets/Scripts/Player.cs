@@ -40,7 +40,7 @@ public class Player : MonoBehaviour {
         ContactPoint2D[] arr = new ContactPoint2D[10];
         int allContacts = playerCollider.GetContacts(arr);
         // Count only ground contacts
-        int contactCount = arr.Take(allContacts).Count(curr => curr.collider.tag != "Wall");
+        int contactCount = arr.Take(allContacts).Count(curr => curr.collider.tag != "Wall" && curr.collider.tag != "MainCamera");
         // Move horizontally
         playerRB.velocity = new Vector2(moveDir * moveSpeed, playerRB.velocity.y);    
         // Handle jump
