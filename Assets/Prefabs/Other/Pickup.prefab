@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5871e1f5a78c65243970f74e1d72171f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 01cbd077bb47f53439b9c0aecdf19d91, type: 2}
+  item: {fileID: 0}
   descriptionUI: {fileID: 1669715754089876}
   nextButton: {fileID: 1487510014593874}
   descriptionText: {fileID: 114898523936894062}

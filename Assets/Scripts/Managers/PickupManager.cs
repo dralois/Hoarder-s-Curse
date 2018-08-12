@@ -3,13 +3,32 @@ using System.Collections.Generic;
 
 public class PickupManager : MonoBehaviour {
 
+    [SerializeField]
+    private GameObject pickupPrefab;
+
     // Singleton instance
     private static PickupManager _instance = null;
 
     // Current number of triggered items
     public int currTriggered { get; private set; }
     private LinkedList<Pickup> currItems;
-    private LinkedListNode<Pickup> current = null;
+    private LinkedListNode<Pickup> current = null;    
+
+    #region Spawning    
+
+    public void SpawnItem(Vector2 at, List<InventoryItem> spawnList)
+    {
+        // Select random number in range
+        int toSpawn = Random.Range(0, spawnList.Count - 1);
+        // Spawn a pickup
+        GameObject spawned = Instantiate(pickupPrefab, at, Quaternion.identity);
+        // Set the item
+        spawned.GetComponent<Pickup>().SetItem(spawnList[toSpawn]);
+    }
+
+    #endregion
+
+    #region On Ground
 
     public void addItem(Pickup item)
     {
@@ -61,6 +80,10 @@ public class PickupManager : MonoBehaviour {
         }
     }
 
+    #endregion
+
+    #region Singleton
+
     public static PickupManager Instance
     {
         get
@@ -82,5 +105,9 @@ public class PickupManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
         // Create pickup list
         currItems = new LinkedList<Pickup>();
+        // Seed random generator
+        Random.InitState(System.DateTime.Now.Millisecond * System.DateTime.Now.Second);
     }
+
+    #endregion
 }

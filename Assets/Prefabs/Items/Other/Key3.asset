@@ -9,8 +9,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbfc3a287b390b54294adb338560c6af, type: 3}
-  m_Name: Level1Key
+  m_Name: Key3
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
   itemName: Treasure Key
-  usableLevel: 1
+  usableLevel: 3

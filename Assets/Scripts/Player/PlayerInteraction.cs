@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class PlayerInteraction : MonoBehaviour
     
     // Other stuff
     private Animator playerAnim;
+    [SerializeField]
+    private List<InventoryItem> everythang;
 
     private void Start()
     {
@@ -45,6 +48,10 @@ public class PlayerInteraction : MonoBehaviour
         if (down)
         {
             PickupManager.Instance.switchActive();
+        }
+        if (up)
+        {
+            PickupManager.Instance.SpawnItem(transform.position, everythang);
         }
     }    
 }

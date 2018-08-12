@@ -27,7 +27,7 @@ public class Pickup : MonoBehaviour {
         {
             case InventoryItem.ItemType.Armor:
                 {
-                    Armor curr = (Armor) item;
+                    Armor curr = (Armor)item;
                     descriptionText.text = curr.itemName.ToUpper() + "\nRESIST: " + curr.damageResistance.ToString();
                     break;
                 }
@@ -46,8 +46,7 @@ public class Pickup : MonoBehaviour {
             case InventoryItem.ItemType.Potion:
                 {
                     Potion curr = (Potion)item;
-                    descriptionText.text = curr.itemName.ToUpper() + "\nTYPE: " + curr.potionType.ToString();
-                    Debug.Log(curr.potionType.ToString());
+                    descriptionText.text = curr.itemName.ToUpper() + "\nTYPE: " + curr.potionType.ToString().ToUpper();
                     break;
                 }
             case InventoryItem.ItemType.RangedWeapon:
@@ -82,6 +81,12 @@ public class Pickup : MonoBehaviour {
         {
             PickupManager.Instance.removeItem(this);
         }
+    }
+
+    public void SetItem(InventoryItem newItem)
+    {
+        // Set item
+        item = newItem;
     }
 
     public void setPickupable(bool enabled)
