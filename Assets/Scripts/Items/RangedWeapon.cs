@@ -7,7 +7,8 @@ namespace Assets.Scripts
     {
         public enum RangedWeaponType : uint
         {
-            Crossbow = 0
+            Crossbow = 0,
+            Bow = 1
         }
 
         public RangedWeaponType rangedWeaponType;

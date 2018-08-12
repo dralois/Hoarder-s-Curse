@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using Assets.Scripts;
 
 public class Pickup : MonoBehaviour {
 
@@ -8,6 +10,8 @@ public class Pickup : MonoBehaviour {
     private GameObject descriptionUI;
     [SerializeField]
     private GameObject nextButton;
+    [SerializeField]
+    private Text descriptionText;
 
     // Turning sprite on the floor
     private SpriteRenderer itemRenderer;
@@ -18,7 +22,43 @@ public class Pickup : MonoBehaviour {
         itemRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
         // Set sprite to render
         itemRenderer.sprite = item.sprite;
-        
+        // Depending on pickup type set description
+        switch (item.itemType)
+        {
+            case InventoryItem.ItemType.Armor:
+                {
+                    Armor curr = (Armor) item;
+                    descriptionText.text = curr.itemName.ToUpper() + "\nRESIST: " + curr.damageResistance.ToString();
+                    break;
+                }
+            case InventoryItem.ItemType.Key:
+                {
+                    Key curr = (Key)item;
+                    descriptionText.text = curr.itemName.ToUpper() + "\nLEVEL: " + curr.usableLevel.ToString();
+                    break;
+                }
+            case InventoryItem.ItemType.MeleeWeapon:
+                {
+                    MeleeWeapon curr = (MeleeWeapon)item;
+                    descriptionText.text = curr.itemName.ToUpper() + "\nDMG: " + curr.damage.ToString() + "\tRNG: " + curr.range.ToString();
+                    break;
+                }
+            case InventoryItem.ItemType.Potion:
+                {
+                    Potion curr = (Potion)item;
+                    descriptionText.text = curr.itemName.ToUpper() + "\nTYPE: " + curr.potionType.ToString();
+                    Debug.Log(curr.potionType.ToString());
+                    break;
+                }
+            case InventoryItem.ItemType.RangedWeapon:
+                {
+                    RangedWeapon curr = (RangedWeapon)item;
+                    descriptionText.text = curr.itemName.ToUpper() + "\nDMG: " + curr.damage.ToString() + "\tRNG: " + curr.range.ToString();
+                    break;
+                }
+            default:
+                break;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

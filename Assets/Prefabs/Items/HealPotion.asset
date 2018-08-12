@@ -8,11 +8,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb1925e352607c4babc7b6300e3f66f, type: 3}
-  m_Name: Sword
+  m_Script: {fileID: 11500000, guid: 7c97c12134287744eb96fe1356d12c52, type: 3}
+  m_Name: HealPotion
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300002, guid: b1ba3bbec290f2148854c7520019ba5b, type: 3}
-  itemName: Fine Sword
-  meleeWeaponType: 0
-  damage: 5
-  range: 2.3
+  sprite: {fileID: 0}
+  itemName: Healing Potion
+  potionType: 0
