@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4577341633806484}
   - component: {fileID: 212788141969465942}
-  - component: {fileID: 61150239310649470}
   - component: {fileID: 50670145084326574}
   - component: {fileID: 114820257573960834}
+  - component: {fileID: 70701817330222828}
   m_Layer: 0
   m_Name: GroundEnemy
   m_TagString: Untagged
@@ -39,6 +39,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4457531758932782}
   - component: {fileID: 58572938276527560}
+  - component: {fileID: 114312827249391786}
   m_Layer: 0
   m_Name: TriggerZone
   m_TagString: Untagged
@@ -87,7 +88,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -108,8 +109,8 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 4
---- !u!61 &61150239310649470
-BoxCollider2D:
+--- !u!70 &70701817330222828
+CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -121,18 +122,19 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.46666667, y: 1}
-    newSize: {x: 0.46666667, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 0.46666667, y: 1}
-  m_EdgeRadius: 0
+  m_Direction: 0
+--- !u!114 &114312827249391786
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1398030006294912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74301d8bdddf74d4cb6c5cf2cfa888ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114820257573960834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -144,6 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d6a5d735e611134b92aa31c66b6641d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moveSpeedX: 4
+  _moveSpeedY: 0
+  _jumpSpeed: 15
 --- !u!212 &212788141969465942
 SpriteRenderer:
   m_ObjectHideFlags: 1
