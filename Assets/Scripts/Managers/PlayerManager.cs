@@ -36,6 +36,7 @@ public class PlayerManager : MonoBehaviour
         }
         else if (_instance != this)
             Destroy(gameObject);
+
         // Make sure it persits
         DontDestroyOnLoad(gameObject);
         // Player should be alive at the start

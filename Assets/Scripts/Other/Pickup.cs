@@ -26,7 +26,7 @@ public class Pickup : MonoBehaviour {
         // Spin it around the Y axis
         transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime);
         // On pickup
-        if (Input.GetButtonDown("Pickup"))
+        if (Input.GetButtonDown("Pickup") && pickupable)
         {
             // Add to inventory and destroy
             InventoryManager.Instance.AddItem(item);
@@ -36,15 +36,22 @@ public class Pickup : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // Enable pickup on player collision
         if (collision.tag == "Player")
         {
             descriptionUI.gameObject.SetActive(true);
             pickupable = true;
         }
+        // Remove RB on ground collision
+        else if(collision.tag == "Ground")
+        {
+            Destroy(gameObject.GetComponent<Rigidbody2D>());
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        // Disable pickup on player collision exit
         if (collision.tag == "Player")
         {
             descriptionUI.gameObject.SetActive(false);
