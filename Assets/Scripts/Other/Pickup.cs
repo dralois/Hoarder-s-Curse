@@ -102,8 +102,14 @@ public class Pickup : MonoBehaviour {
     public void pickupItem()
     {
         // Add to inventory and destroy
-        InventoryManager.Instance.AddItem(item);
-        PickupManager.Instance.removeItem(this);
-        Destroy(gameObject);
+        if (InventoryManager.Instance.AddItem(item))
+        {
+            PickupManager.Instance.removeItem(this);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Camera.current.GetComponent<CameraMovement>().ApplyShake();
+        }
     }
 }
