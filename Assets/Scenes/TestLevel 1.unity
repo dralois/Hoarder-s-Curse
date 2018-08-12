@@ -162,6 +162,10 @@ Prefab:
       propertyPath: _jumpSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4450958484329946, guid: 4ef9e4242d1195046af1440343250b50, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ef9e4242d1195046af1440343250b50, type: 2}
   m_IsPrefabAsset: 0
@@ -170,6 +174,213 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 20004250198771630, guid: d4c4333eafd8d1342a035cf7da0307c7,
     type: 2}
   m_PrefabInternal: {fileID: 591590079}
+--- !u!213 &382209742
+Sprite:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_Rect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 4
+    height: 4
+  m_Offset: {x: 0, y: 0}
+  m_Border: {x: 0, y: 0, z: 0, w: 0}
+  m_PixelsToUnits: 4
+  m_Pivot: {x: 0.5, y: 0.5}
+  m_Extrude: 0
+  m_IsPolygon: 0
+  m_AtlasName: 
+  m_PackingTag: 
+  m_RenderDataKey:
+    00000000000000000000000000000000: 0
+  m_AtlasTags: []
+  m_SpriteAtlas: {fileID: 0}
+  m_RD:
+    serializedVersion: 3
+    texture: {fileID: 0}
+    alphaTexture: {fileID: 0}
+    m_SubMeshes:
+    - serializedVersion: 2
+      firstByte: 0
+      indexCount: 6
+      topology: 0
+      baseVertex: 0
+      firstVertex: 0
+      vertexCount: 4
+      localAABB:
+        m_Center: {x: 0, y: 0, z: 0}
+        m_Extent: {x: 0, y: 0, z: 0}
+    m_IndexBuffer: 000001000200020001000300
+    m_VertexData:
+      serializedVersion: 2
+      m_VertexCount: 4
+      m_Channels:
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 3
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 1
+        offset: 0
+        format: 0
+        dimension: 2
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      m_DataSize: 80
+      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf00000000000000000000803f0000803f0000803f00000000000000000000803f00000000
+    m_Bindpose: []
+    textureRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 4
+      height: 4
+    textureRectOffset: {x: 0, y: 0}
+    atlasRectOffset: {x: -1, y: -1}
+    settingsRaw: 64
+    uvTransform: {x: 4, y: 2, z: 4, w: 2}
+    downscaleMultiplier: 1
+  m_AtlasRD:
+    serializedVersion: 3
+    texture: {fileID: 0}
+    alphaTexture: {fileID: 0}
+    m_SubMeshes:
+    - serializedVersion: 2
+      firstByte: 0
+      indexCount: 6
+      topology: 0
+      baseVertex: 0
+      firstVertex: 0
+      vertexCount: 4
+      localAABB:
+        m_Center: {x: 0, y: 0, z: 0}
+        m_Extent: {x: 0, y: 0, z: 0}
+    m_IndexBuffer: 000001000200020001000300
+    m_VertexData:
+      serializedVersion: 2
+      m_VertexCount: 4
+      m_Channels:
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 3
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 1
+        offset: 0
+        format: 0
+        dimension: 2
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      m_DataSize: 80
+      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf00000000000000000000803f0000803f0000803f00000000000000000000803f00000000
+    m_Bindpose: []
+    textureRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 4
+      height: 4
+    textureRectOffset: {x: 0, y: 0}
+    atlasRectOffset: {x: -1, y: -1}
+    settingsRaw: 64
+    uvTransform: {x: 4, y: 2, z: 4, w: 2}
+    downscaleMultiplier: 1
+  m_PhysicsShape: []
+  m_Bones: []
+  m_SpriteID: 
 --- !u!1001 &591590079
 Prefab:
   m_ObjectHideFlags: 0
@@ -318,7 +529,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4663327061854570, guid: 07d64225329465346b19fa41a426c7e6, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114796613586032280, guid: 07d64225329465346b19fa41a426c7e6,
         type: 2}
@@ -454,7 +665,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4080294435515740, guid: 3973e654d9d3ad545805a9b502be1be1, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8195094279706327168, guid: 3973e654d9d3ad545805a9b502be1be1,
         type: 2}
@@ -3526,7 +3737,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4495408533343572, guid: c98d463349a74de489107f1d0ddecaf3, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114301689425647768, guid: c98d463349a74de489107f1d0ddecaf3,
         type: 2}
@@ -3546,6 +3757,48 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4163295359837800, guid: c98d463349a74de489107f1d0ddecaf3,
     type: 2}
   m_PrefabInternal: {fileID: 892108265}
+--- !u!1001 &1055825159
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4450958484329946, guid: d8a6486afce73b7499cc12eef87e458a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 3.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450958484329946, guid: d8a6486afce73b7499cc12eef87e458a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450958484329946, guid: d8a6486afce73b7499cc12eef87e458a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450958484329946, guid: d8a6486afce73b7499cc12eef87e458a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450958484329946, guid: d8a6486afce73b7499cc12eef87e458a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450958484329946, guid: d8a6486afce73b7499cc12eef87e458a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450958484329946, guid: d8a6486afce73b7499cc12eef87e458a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450958484329946, guid: d8a6486afce73b7499cc12eef87e458a, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d8a6486afce73b7499cc12eef87e458a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1409869375
 Prefab:
   m_ObjectHideFlags: 0
@@ -3591,7 +3844,7 @@ Prefab:
     - target: {fileID: 224539176493270314, guid: 03f3f46fb284bd04a8fd070f85199dd3,
         type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 224539176493270314, guid: 03f3f46fb284bd04a8fd070f85199dd3,
         type: 2}
@@ -3813,7 +4066,7 @@ Prefab:
     - target: {fileID: 224775322459729206, guid: 2007fedf9db7f214fa85dc77cec8fd9b,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224775322459729206, guid: 2007fedf9db7f214fa85dc77cec8fd9b,
         type: 2}
@@ -3873,7 +4126,7 @@ Prefab:
     - target: {fileID: 224889373063358494, guid: 2007fedf9db7f214fa85dc77cec8fd9b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -420.87256
+      value: -430
       objectReference: {fileID: 0}
     - target: {fileID: 224266562491710174, guid: 2007fedf9db7f214fa85dc77cec8fd9b,
         type: 2}
@@ -3883,7 +4136,7 @@ Prefab:
     - target: {fileID: 224980581166255662, guid: 2007fedf9db7f214fa85dc77cec8fd9b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -420.87256
+      value: -430
       objectReference: {fileID: 0}
     - target: {fileID: 224980581166255662, guid: 2007fedf9db7f214fa85dc77cec8fd9b,
         type: 2}
@@ -4129,6 +4382,11 @@ Prefab:
         type: 2}
       propertyPath: m_AnchoredPosition.y
       value: -420.87256
+      objectReference: {fileID: 0}
+    - target: {fileID: 224745160840072378, guid: 2007fedf9db7f214fa85dc77cec8fd9b,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -430
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2007fedf9db7f214fa85dc77cec8fd9b, type: 2}

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Linq;
+﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class EnemyGround : MonoBehaviour {
+public class EnemyFlying : MonoBehaviour {
 
     private Transform _playerTarget;
     private SpriteRenderer _enemyRenderer;
@@ -15,7 +15,7 @@ public class EnemyGround : MonoBehaviour {
     [SerializeField]
     private float _moveSpeedX;
     [SerializeField]
-    private float _jumpSpeed;
+    private float _moveSpeedY;
     [Header("Damage Properties")]
     [SerializeField]
     private float _damage;
@@ -39,20 +39,22 @@ public class EnemyGround : MonoBehaviour {
         _lastHit = 0f;
         // Set the current health to maxHealth
         _health = _maxHealth;
+
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
 
         if (_playerTarget != null)
         {
             _enemyRB.constraints = RigidbodyConstraints2D.FreezeRotation;
-            Vector2 playerDirectionNormalized = new Vector2(_playerTarget.position.x - gameObject.transform.position.x,
-                                                  _playerTarget.position.y - gameObject.transform.position.y).normalized;
-            
-            _enemyRB.velocity = new Vector2(Math.Sign(playerDirectionNormalized.x) * _moveSpeedX, _enemyRB.velocity.y);
+            Vector2 playerDirection = new Vector2(_playerTarget.position.x - gameObject.transform.position.x,
+                                                  _playerTarget.position.y - gameObject.transform.position.y);
 
-            _enemyRenderer.flipX = (playerDirectionNormalized.x < 0);
+            _enemyRB.velocity = new Vector2(Math.Sign(playerDirection.x) * _moveSpeedX, _enemyRB.velocity.y);
+
+            _enemyRenderer.flipX = (playerDirection.x < 0);
 
             /*
             ContactPoint2D[] arr = new ContactPoint2D[10];
@@ -68,7 +70,7 @@ public class EnemyGround : MonoBehaviour {
         {
             _enemyRB.constraints = RigidbodyConstraints2D.FreezeAll;
         }
-	}
+    }
 
     public void Attack()
     {

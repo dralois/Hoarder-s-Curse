@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerZoneScript : MonoBehaviour {
+public class GroundEnemyTriggerZonePlayer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

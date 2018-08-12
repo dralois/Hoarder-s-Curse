@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114097102815486338}
   - component: {fileID: 70869136582582734}
   m_Layer: 0
-  m_Name: GroundEnemy
+  m_Name: FlyingEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4643104870685278}
   - component: {fileID: 58059420546670496}
-  - component: {fileID: 114156658819486196}
+  - component: {fileID: 114191571274344726}
   m_Layer: 0
   m_Name: TriggerZonePlayer
   m_TagString: Untagged
@@ -56,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4711649974381664}
   - component: {fileID: 58977773599643776}
-  - component: {fileID: 114180702155592850}
+  - component: {fileID: 114013577330832838}
   m_Layer: 0
   m_Name: TriggerZoneAttack
   m_TagString: Untagged
@@ -119,8 +119,8 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 5
-  m_Material: {fileID: 6200000, guid: 51ad8c5cc2c8d2b46a925689ea70fa41, type: 2}
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -170,6 +170,17 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.46666667, y: 1}
   m_Direction: 0
+--- !u!114 &114013577330832838
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1893535064318922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d53ba23637fd641becab0a2c4b2284, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114097102815486338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -181,12 +192,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d6a5d735e611134b92aa31c66b6641d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeedX: 3
+  _moveSpeedX: 4
   _jumpSpeed: 10
-  _damage: 0.01
-  _damageInterval: 2
-  _maxHealth: 100
---- !u!114 &114156658819486196
+  _damage: 0
+  _damageInterval: 0
+  _maxHealth: 0
+--- !u!114 &114191571274344726
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -194,18 +205,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1646557785916792}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d66c2aea30d55214eba1e94813d05eaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114180702155592850
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1893535064318922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59b3bb4924bf5ba498bfe7ca44e5cf2a, type: 3}
+  m_Script: {fileID: 11500000, guid: 60de316c35c3162409d9f6b581a385ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212295722761075058
@@ -243,7 +243,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7e8f00730f6f52748aac88784349d126, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bdbb1f70129b715428fccd532510036e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
