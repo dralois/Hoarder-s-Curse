@@ -6,16 +6,13 @@ public class PlayerManager : MonoBehaviour
     // Singleton instance
     private static PlayerManager _instance = null;
 
-    [Header("Objects")]
-    [SerializeField]
-    private RectTransform healthSize;
-    [SerializeField]
-    private Text healthText;
     [Header("Stats")]
     [SerializeField]
     private float health;
     [SerializeField]
     private float reduction;
+    // Keeps track ingame
+    private PlayerHealthbarUI healthUI;
 
     // Keeps track if player can still do stuff
     public bool isAlive { get; private set; }
@@ -57,7 +54,15 @@ public class PlayerManager : MonoBehaviour
             isAlive = false;
         }
         // Update UI
-        healthSize.localScale = new Vector3(health, 1, 1);
-        healthText.text = Mathf.Round(health * 100) + " %";
+        if (healthUI == null)
+        {
+            // Find script in scene
+            healthUI = FindObjectOfType<PlayerHealthbarUI>();
+            // If still null return
+            if (healthUI == null)
+                return;
+        }
+        // Set Health
+        healthUI.SetHealthRemaining(health);
     }
 }

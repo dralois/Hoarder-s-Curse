@@ -17,7 +17,8 @@ public class Pickup : MonoBehaviour {
         // Retrieve sprite renderer for items
         itemRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
         // Set sprite to render
-        itemRenderer.sprite = item.sprite;        
+        itemRenderer.sprite = item.sprite;
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -41,17 +42,6 @@ public class Pickup : MonoBehaviour {
         {
             PickupManager.Instance.removeItem(this);
         }
-    }    
-
-    private void OnBecameInvisible()
-    {
-        Debug.Log("Im out boyz");
-        // Destroy if camera can't see pickup anymore because it moved past
-        if(Camera.main.transform.position.x > transform.position.x)
-        {
-            PickupManager.Instance.removeItem(this);
-            Destroy(gameObject);
-        }
     }
 
     public void setPickupable(bool enabled)
@@ -60,6 +50,8 @@ public class Pickup : MonoBehaviour {
         descriptionUI.SetActive(enabled);
         // Enable additional button
         nextButton.SetActive(PickupManager.Instance.currTriggered > 1);
+        // Make item bigger to tell the difference
+        itemRenderer.transform.localScale = new Vector3(enabled ? 2 : 1, enabled ? 2 : 1, 1);
     }
 
     public void pickupItem()

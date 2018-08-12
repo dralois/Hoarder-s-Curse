@@ -46,5 +46,5 @@ public class PlayerInteraction : MonoBehaviour
         {
             PickupManager.Instance.switchActive();
         }
-    }
+    }    
 }
