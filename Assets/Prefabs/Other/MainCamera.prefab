@@ -118,6 +118,8 @@ MonoBehaviour:
     type: 2}
   playerManager: {fileID: 1469722160630816, guid: b0a0048a0a607f64bb59f72fd9049171,
     type: 2}
+  pickupManager: {fileID: 1609982290069950, guid: 7bddee13632f0df4099958f9b46a9d6c,
+    type: 2}
 --- !u!114 &114466496538166564
 MonoBehaviour:
   m_ObjectHideFlags: 1

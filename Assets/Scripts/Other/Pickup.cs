@@ -5,33 +5,19 @@ public class Pickup : MonoBehaviour {
     [SerializeField]
     private InventoryItem item;
     [SerializeField]
-    private float rotateSpeed;
+    private GameObject descriptionUI;
     [SerializeField]
-    private Canvas descriptionUI;
+    private GameObject nextButton;
 
     // Turning sprite on the floor
-    SpriteRenderer itemRenderer;
-    bool pickupable = false;
+    private SpriteRenderer itemRenderer;
 
-	void Start () {
+    void Start()
+    {
         // Retrieve sprite renderer for items
-        itemRenderer = gameObject.GetComponent<SpriteRenderer>();
+        itemRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
         // Set sprite to render
         itemRenderer.sprite = item.sprite;
-        // Disable flavor text
-        descriptionUI.gameObject.SetActive(false);
-	}
-	
-	void Update () {
-        // Spin it around the Y axis
-        transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime);
-        // On pickup
-        if (Input.GetButtonDown("Pickup") && pickupable)
-        {
-            // Add to inventory and destroy
-            InventoryManager.Instance.AddItem(item);
-            Destroy(gameObject);
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -39,8 +25,7 @@ public class Pickup : MonoBehaviour {
         // Enable pickup on player collision
         if (collision.tag == "Player")
         {
-            descriptionUI.gameObject.SetActive(true);
-            pickupable = true;
+            PickupManager.Instance.addItem(this);
         }
         // Remove RB on ground collision
         else if(collision.tag == "Ground")
@@ -54,14 +39,34 @@ public class Pickup : MonoBehaviour {
         // Disable pickup on player collision exit
         if (collision.tag == "Player")
         {
-            descriptionUI.gameObject.SetActive(false);
-            pickupable = false;
+            PickupManager.Instance.removeItem(this);
+        }
+    }    
+
+    private void OnBecameInvisible()
+    {
+        Debug.Log("Im out boyz");
+        // Destroy if camera can't see pickup anymore because it moved past
+        if(Camera.main.transform.position.x > transform.position.x)
+        {
+            PickupManager.Instance.removeItem(this);
+            Destroy(gameObject);
         }
     }
 
-    private void LateUpdate()
+    public void setPickupable(bool enabled)
     {
-        // UI should not spin
-        descriptionUI.transform.rotation = Quaternion.identity;
+        // En/disable UI desc
+        descriptionUI.SetActive(enabled);
+        // Enable additional button
+        nextButton.SetActive(PickupManager.Instance.currTriggered > 1);
+    }
+
+    public void pickupItem()
+    {
+        // Add to inventory and destroy
+        InventoryManager.Instance.AddItem(item);
+        PickupManager.Instance.removeItem(this);
+        Destroy(gameObject);
     }
 }
