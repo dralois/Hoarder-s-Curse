@@ -17,7 +17,7 @@ public class Pickup : MonoBehaviour {
         // Retrieve sprite renderer for items
         itemRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
         // Set sprite to render
-        itemRenderer.sprite = item.sprite;
+        itemRenderer.sprite = item.sprite;        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

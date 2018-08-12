@@ -10,8 +10,17 @@ public class PlayerInteraction : MonoBehaviour
     // Last direction
     private int lastDpadX;
     private int lastDpadY;
+    
+    // Other stuff
+    private Animator playerAnim;
 
-	void Update ()
+    private void Start()
+    {
+        // Retrieve animator
+        playerAnim = gameObject.GetComponentInChildren<Animator>();
+    }
+
+    void Update ()
     {
         // Get current dpad presses
         if (Input.GetAxis("DPadX") == 1 && lastDpadX != 1) { right = true; } else { right = false; }
@@ -26,6 +35,11 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetButtonDown("Pickup"))
         {
             PickupManager.Instance.pickupActive();
+        }
+        // On Attack
+        if (Input.GetButtonDown("Attack"))
+        {
+            playerAnim.SetTrigger("Attack");
         }
         // On switch pickup pressed
         if (down)
