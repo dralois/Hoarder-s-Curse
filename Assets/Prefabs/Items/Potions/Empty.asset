@@ -9,8 +9,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c97c12134287744eb96fe1356d12c52, type: 3}
-  m_Name: HealPotion
+  m_Name: Empty
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: c2a99f1f6d6dab1498df4e8ffa75c1d4, type: 3}
   itemName: Healing Potion
-  potionType: 0
+  potionType: 2

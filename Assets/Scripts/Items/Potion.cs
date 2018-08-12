@@ -8,7 +8,8 @@ namespace Assets.Scripts
         public enum PotionType : uint
         {
             Healing = 0,
-            Strength = 1
+            Strength = 1,
+            Empty
         }
 
         public PotionType potionType;
