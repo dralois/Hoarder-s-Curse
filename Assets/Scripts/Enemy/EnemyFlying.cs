@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyFlying : MonoBehaviour
@@ -29,6 +30,9 @@ public class EnemyFlying : MonoBehaviour
     [Header("Health")]
     [SerializeField]
     private int _maxHealth;
+    [Header("Drops")]
+    [SerializeField]
+    private List<InventoryItem> _dropList;
 
     private void Start()
     {
@@ -129,6 +133,8 @@ public class EnemyFlying : MonoBehaviour
 
     private void Die()
     {
+        if (UnityEngine.Random.value >= 0.5)
+            PickupManager.Instance.SpawnItem(transform.position, _dropList);
         Destroy(gameObject);
     }
 

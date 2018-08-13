@@ -10,6 +10,7 @@ public class EnemyGround : MonoBehaviour {
     private Collider2D _enemyCollider;
     private Rigidbody2D _enemyRB;
     private float _lastHit;
+    private int _health;
 
     [Header("Movement")]
     [SerializeField]
@@ -24,7 +25,10 @@ public class EnemyGround : MonoBehaviour {
     [Header("Health")]
     [SerializeField]
     private int _maxHealth;
-    private int _health;
+    [Header("Drops")]
+    [SerializeField]
+    private List<InventoryItem> _dropList;
+
     private void Start()
     {
         // Retrieve the renderer
@@ -106,6 +110,9 @@ public class EnemyGround : MonoBehaviour {
 
     private void Die()
     {
+        if(UnityEngine.Random.value >= 0.5)
+            PickupManager.Instance.SpawnItem(transform.position, _dropList);
+
         Destroy(gameObject);
     }
 
