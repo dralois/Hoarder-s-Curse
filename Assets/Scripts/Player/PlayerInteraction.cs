@@ -16,6 +16,7 @@ public class PlayerInteraction : MonoBehaviour
     // Other stuff
     private Animator playerAnim;
     private EquippedUI currEquippedUI;
+    private SpriteRenderer playerRenderer;
 
     [SerializeField]
     private List<InventoryItem> everythang;
@@ -29,6 +30,8 @@ public class PlayerInteraction : MonoBehaviour
     {
         // Retrieve animator
         playerAnim = gameObject.GetComponentInChildren<Animator>();
+        // Retrieve renderer
+        playerRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
     }
 
     void Update ()
@@ -82,9 +85,43 @@ public class PlayerInteraction : MonoBehaviour
                 // If melee weapon equiped
                 if(currentWeapon.itemType == InventoryItem.ItemType.MeleeWeapon)
                 {
-                    playerAnim.SetTrigger("Attack");
-                    //RaycastHit2D[] hits = Physics2D.Raycast(transform.position, );
-
+                    // Cast to weapon
+                    MeleeWeapon curr = (MeleeWeapon)currentWeapon;
+                    // Play corresponding animation
+                    switch (curr.meleeWeaponType)
+                    {
+                        case MeleeWeapon.MeleeWeaponType.Sword:
+                            {
+                                playerAnim.SetTrigger("AttackSword");
+                                break;
+                            }
+                        case MeleeWeapon.MeleeWeaponType.Lance:
+                            {
+                                playerAnim.SetTrigger("AttackLance");
+                                break;
+                            }
+                        default:
+                            {
+                                Debug.LogError("Invalid melee weapon type");
+                                break;
+                            }
+                    }                    
+                    // Raycast against enemies
+                    RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, new Vector2(playerRenderer.flipX ? -1 : 1, 0), 
+                                                                curr.range, LayerMask.GetMask("Enemy"));
+                    // Show range in debug
+                    Debug.DrawLine(transform.position, transform.position + new Vector3(playerRenderer.flipX ? -1 : 1, 0) * curr.range, Color.white, .2f);
+                    // Apply damage and knockback
+                    foreach (RaycastHit2D hit in hits)
+                    {
+                        if (!hit.collider.isTrigger)
+                        {
+                            // Knockback
+                            hit.rigidbody.AddForceAtPosition((new Vector3(playerRenderer.flipX ? -1 : 1, 0)) * curr.damage * 10, hit.point, ForceMode2D.Impulse);
+                            // Damage
+                            hit.transform.GetComponent<EnemyGround>().ApplyDamage(curr.damage);
+                        }
+                    }
                 }
                 // Otherwise has to be ranged weapon
                 else
