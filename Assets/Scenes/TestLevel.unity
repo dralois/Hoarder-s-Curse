@@ -4877,6 +4877,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114383814909958650, guid: c98d463349a74de489107f1d0ddecaf3,
+        type: 2}
+      propertyPath: everythang.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4495408533343572, guid: c98d463349a74de489107f1d0ddecaf3, type: 2}
       propertyPath: m_LocalPosition.x
       value: 3.5
@@ -4909,6 +4914,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114383814909958650, guid: c98d463349a74de489107f1d0ddecaf3,
+        type: 2}
+      propertyPath: everythang.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: bc0eee3d93900f6458ce17ee8f2c0e45,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c98d463349a74de489107f1d0ddecaf3, type: 2}
   m_IsPrefabAsset: 0
@@ -5037,12 +5048,12 @@ Prefab:
     - target: {fileID: 224980581166255662, guid: 2007fedf9db7f214fa85dc77cec8fd9b,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 13.750008
+      value: 13.75
       objectReference: {fileID: 0}
     - target: {fileID: 224273021339306572, guid: 2007fedf9db7f214fa85dc77cec8fd9b,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 71.250015
+      value: 71.25
       objectReference: {fileID: 0}
     - target: {fileID: 224157533157279206, guid: 2007fedf9db7f214fa85dc77cec8fd9b,
         type: 2}
