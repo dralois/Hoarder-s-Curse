@@ -13,6 +13,7 @@ public class PlayerManager : MonoBehaviour
     
     // Keeps track if player can still do stuff
     public bool isAlive { get; private set; }
+    public bool isBuffed { get; private set; }
 
     private StatsUI PlayerStatsUI
     {
@@ -75,6 +76,7 @@ public class PlayerManager : MonoBehaviour
     {
         // En/Disable amp
         dmgAmp = enabled ? 2.0f : 1.0f;
+        isBuffed = enabled;
         // En/Disable amp UI
         PlayerStatsUI.SetBuffEnabled(enabled);
     }
