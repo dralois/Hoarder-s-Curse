@@ -58,7 +58,7 @@ public class PlayerManager : MonoBehaviour
         PlayerStatsUI.SetHealthRemaining(0);
         isAlive = false;
         // Load end scene
-        LevelManager.Instance.LoadLevel(1);
+        LevelManager.Instance.LoadLevel(0);
     }
 
     public void Revive()
