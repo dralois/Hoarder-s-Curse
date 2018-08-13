@@ -7,7 +7,7 @@ public class GameOver : MonoBehaviour
         if (Input.anyKeyDown)
         {
             PlayerManager.Instance.Revive();
-            LevelManager.Instance.LoadLevel(0);
+            LevelManager.Instance.LoadLevel(1);
         }
 	}
 }
