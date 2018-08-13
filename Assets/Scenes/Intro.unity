@@ -113,6 +113,30 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1596565429 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1282669358518612, guid: 0c3709e8b96f7b94eab0a4d08a5dd528,
+    type: 2}
+  m_PrefabInternal: {fileID: 1989858911}
+--- !u!114 &1596565430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1596565429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d05062adb1f30c458aeab991044947e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryManager: {fileID: 1163435401386438, guid: b41bd19105b96674b9c5b8789516b3b9,
+    type: 2}
+  playerManager: {fileID: 1469722160630816, guid: b0a0048a0a607f64bb59f72fd9049171,
+    type: 2}
+  pickupManager: {fileID: 1609982290069950, guid: 7bddee13632f0df4099958f9b46a9d6c,
+    type: 2}
+  levelManager: {fileID: 1663958243027434, guid: 7863586eabe4e674d9a37f28287363b8,
+    type: 2}
 --- !u!1001 &1675985982
 Prefab:
   m_ObjectHideFlags: 0
@@ -223,10 +247,27 @@ Prefab:
     - target: {fileID: 114964309114100918, guid: 47e4b91418ea7d645bfb2acdfb4cba89,
         type: 2}
       propertyPath: m_Text
-      value: 'YOU WON
+      value: 'CONTROLS:
+
+        DPAD UP: SWITCH WEAPON TYPE
+
+        TRIGGER LEFT: STRENGTH POTION
+
+        TRIGGER RIGHT: HEALTH POTION
+
+        X BUTTON: ATTACK
+
+        A BUTTON: JUMP
+
+        Y BUTTON: PICKUP ITEM
 
 
-        PRESS ANY BUTTON TO START OVER'
+        PRESS ANYTHING TO START'
+      objectReference: {fileID: 0}
+    - target: {fileID: 224767979566287158, guid: 47e4b91418ea7d645bfb2acdfb4cba89,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47e4b91418ea7d645bfb2acdfb4cba89, type: 2}
