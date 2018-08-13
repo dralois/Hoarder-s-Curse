@@ -49,8 +49,11 @@ public class EnemyFlying : MonoBehaviour {
         if (_playerTarget != null)
         {
             _enemyRB.constraints = RigidbodyConstraints2D.FreezeRotation;
+
             Vector2 playerDirection = new Vector2(_playerTarget.position.x - gameObject.transform.position.x,
                                                   _playerTarget.position.y - gameObject.transform.position.y);
+
+            Physics2D.Raycast((Vector2)gameObject.transform.position, playerDirection);
 
             _enemyRB.velocity = new Vector2(Math.Sign(playerDirection.x) * _moveSpeedX, _enemyRB.velocity.y);
 
