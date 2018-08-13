@@ -3,10 +3,11 @@ using System.Collections.Generic;
 
 public class InventoryManager : MonoBehaviour {
 
+    public uint _maxInventoryCount;
+
     private static InventoryManager _instance = null;
 
-    public uint _maxInventoryCount;
-    private Dictionary<InventoryItem.ItemType, List<InventoryItem>> _inventory = null;
+    private Dictionary<InventoryItem.ItemType, LinkedList<InventoryItem>> _inventory = null;
     private uint _totalInventoryCount = 0;
 
     public static InventoryManager Instance
@@ -17,7 +18,8 @@ public class InventoryManager : MonoBehaviour {
         }
     }
 
-    public Dictionary<InventoryItem.ItemType, List<InventoryItem>> Inventory
+    // Returns current inventory
+    public Dictionary<InventoryItem.ItemType, LinkedList<InventoryItem>> Inventory
     {
         get
         {
@@ -25,23 +27,30 @@ public class InventoryManager : MonoBehaviour {
         }
     }
 
-    /// <summary>
-    /// Fügt ein Item hinzu, wenn das Inventory noch nicht voll ist
-    /// </summary>
-    /// <param name="item">Hinzuzufügendes Item</param>
-    /// <returns>True, wenn es hinzugefügt wurde; false, wenn <see cref="_maxInventoryCount"/> erreicht wurde</returns>
+    // Returns current number of items
+    public uint currentCount
+    {
+        get
+        {
+            return _totalInventoryCount;
+        }
+    }
+
+    #region Add/Remove
+
+    // Add item if inventory not full
     public bool AddItem(InventoryItem item)
     {
-        List<InventoryItem> items;
+        LinkedList<InventoryItem> items;
 
         if (!_inventory.TryGetValue(item.itemType, out items))
         {
-            _inventory.Add(item.itemType, new List<InventoryItem>());
+            _inventory.Add(item.itemType, new LinkedList<InventoryItem>());
         }
 
         if (_totalInventoryCount < _maxInventoryCount)
         {
-            _inventory[item.itemType].Add(item);
+            _inventory[item.itemType].AddLast(item);
             _totalInventoryCount++;
             return true;
         }
@@ -50,19 +59,15 @@ public class InventoryManager : MonoBehaviour {
             return false;
         }
     }
-
-    /// <summary>
-    /// Löscht ein item aus dem Inventory, wenn es vorhanden ist.
-    /// </summary>
-    /// <param name="item">Zu löschendes Item</param>
-    /// <returns>True, wenn es vorhanden war; false, wenn nicht</returns>
+    
+    // Remove item if in inventory
     public bool RemoveItem(InventoryItem item)
     {
-        List<InventoryItem> items;
+        LinkedList<InventoryItem> items;
 
         if (!_inventory.TryGetValue(item.itemType, out items))
         {
-            _inventory.Add(item.itemType, new List<InventoryItem>());
+            _inventory.Add(item.itemType, new LinkedList<InventoryItem>());
         }
 
         if (_inventory[item.itemType].Contains(item))
@@ -77,16 +82,24 @@ public class InventoryManager : MonoBehaviour {
         }
     }
 
+    #endregion
+
+    #region Singleton
+
     private void Awake()
     {
         if (_instance == null)
         {
             _instance = this;
-            _inventory = new Dictionary<InventoryItem.ItemType, List<InventoryItem>>();
         }        
         else if (_instance != this)
             Destroy(gameObject);
-        
+
+        // Make sure it persits
         DontDestroyOnLoad(gameObject);
+        // Create inventory object
+        _inventory = new Dictionary<InventoryItem.ItemType, LinkedList<InventoryItem>>();
     }
+
+    #endregion
 }

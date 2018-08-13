@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using Assets.Scripts;
 
 public class Pickup : MonoBehaviour {
 
@@ -55,8 +54,17 @@ public class Pickup : MonoBehaviour {
                     descriptionText.text = curr.itemName.ToUpper() + "\nDMG: " + curr.damage.ToString() + "\tRNG: " + curr.range.ToString();
                     break;
                 }
+            case InventoryItem.ItemType.Useless:
+                {
+                    Useless curr = (Useless)item;
+                    descriptionText.text = curr.itemName.ToUpper();
+                    break;
+                }
             default:
-                break;
+                {
+                    descriptionText.text = "ERROR";
+                    break;
+                }
         }
     }
 
