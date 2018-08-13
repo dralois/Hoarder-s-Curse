@@ -75,6 +75,14 @@ public class PlayerManager : MonoBehaviour
         return dmgAmp;
     }
 
+    /// <summary>
+    /// Sets the health back do full hp
+    /// </summary>
+    public void HealingPotion()
+    {
+        health = 1f;
+    }
+
     #region Singleton
 
     public static PlayerManager Instance

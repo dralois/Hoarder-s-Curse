@@ -7,8 +7,13 @@ public class Potion : InventoryItem
     {
         Healing = 0,
         Strength = 1,
-        Empty
+        Empty = 2
     }
+
+    [SerializeField]
+    public bool isUsed;
+    [SerializeField]
+    public Sprite emptyPotion;
 
     public PotionType potionType;
     public Potion() : base(ItemType.Potion) { }

@@ -77,6 +77,27 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
 
+        // On HealthPotion pressed
+        if (Input.GetButtonDown("HealingPotion"))
+        {
+            LinkedList<Potion> potions = (LinkedList<Potion>)InventoryManager.Instance.Inventory[InventoryItem.ItemType.Potion].Cast<Potion>().Where(it => it.potionType == Potion.PotionType.Healing);
+
+            if (potions.Count > 0)
+            {
+                potions.First.Value.isUsed = true;
+                potions.First.Value.potionType = Potion.PotionType.Empty;
+                potions.First.Value.sprite = potions.First.Value.emptyPotion;
+
+                PlayerManager.Instance.HealingPotion();
+            }
+        }
+
+        // On StrengthPotion pressed
+        if (Input.GetButtonDown("StrengthPotion"))
+        {
+
+        }
+
         // On Attack
         if (Input.GetButtonDown("Attack"))
         {
