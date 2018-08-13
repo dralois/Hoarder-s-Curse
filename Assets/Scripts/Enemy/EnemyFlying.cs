@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyFlying : MonoBehaviour
@@ -9,21 +10,30 @@ public class EnemyFlying : MonoBehaviour
     private Collider2D _enemyCollider;
     private Rigidbody2D _enemyRB;
     private float _lastHit;
+    private int _health;
+    private bool _targetInShootableRange;
 
     [Header("Movement")]
     [SerializeField]
     private float _moveSpeedX;
     [SerializeField]
     private float _moveSpeedY;
+    [SerializeField]
+    private float _minDistanceToPlayer;
     [Header("Damage Properties")]
     [SerializeField]
     private float _damage;
+    [SerializeField]
+    private GameObject _projectilePrefab;
     [SerializeField]
     private float _damageInterval;
     [Header("Health")]
     [SerializeField]
     private int _maxHealth;
-    private int _health;
+    [Header("Drops")]
+    [SerializeField]
+    private List<InventoryItem> _dropList;
+
     private void Start()
     {
         // Retrieve the renderer
@@ -35,9 +45,11 @@ public class EnemyFlying : MonoBehaviour
         // Set PlayerTarget to null
         _playerTarget = null;
         // Init the lastHit time to the damageInterval
-        _lastHit = 0f;
+        _lastHit = 0.2f * _damageInterval;
         // Set the current health to maxHealth
         _health = _maxHealth;
+        // Set the target out of Range
+        _targetInShootableRange = false;
 
     }
 
@@ -52,30 +64,25 @@ public class EnemyFlying : MonoBehaviour
             Vector2 playerDirection = new Vector2(_playerTarget.position.x - gameObject.transform.position.x,
                                                   _playerTarget.position.y - gameObject.transform.position.y);
 
-            RaycastHit2D raycastHit = Physics2D.Raycast(gameObject.transform.position, playerDirection, Mathf.Infinity, LayerMask.GetMask("Ground", "Wall", "Player"));
+            RaycastHit2D raycastHit = Physics2D.Raycast(gameObject.transform.position, playerDirection, Mathf.Infinity, LayerMask.GetMask(new[] { "Wall", "Ground", "Default" }));
 
             if (raycastHit.collider.tag != "Player")
             {
                 Vector2 moveDirection = UnityEngine.Random.insideUnitCircle;
-                _enemyRB.velocity = new Vector2(Math.Sign(moveDirection.x) * _moveSpeedX, Math.Sign(moveDirection.y) * _moveSpeedY);
+                Move(moveDirection);
             }
             else
             {
-                _enemyRB.velocity = new Vector2(Math.Sign(playerDirection.x) * _moveSpeedX, _enemyRB.velocity.y);
-                Attack();
+                if (playerDirection.magnitude <= _minDistanceToPlayer)
+                    Move(-playerDirection);
+                else
+                    Move(playerDirection);
+
+                Attack(playerDirection.normalized);
             }
 
             _enemyRenderer.flipX = (playerDirection.x < 0);
 
-            /*
-            ContactPoint2D[] arr = new ContactPoint2D[10];
-            int allContacts = _enemyCollider.GetContacts(arr);
-            // Count only ground contacts
-            int currContacts = arr.Take(allContacts).Where(curr => curr.collider.tag == "Ground" && (Mathf.Abs(Vector2.Angle(Vector2.up, curr.normal)) >= 1f)).Count();
-
-            if (currContacts != 0)
-                Jump();
-            */
         }
         else
         {
@@ -83,14 +90,26 @@ public class EnemyFlying : MonoBehaviour
         }
     }
 
-    public void Attack()
+    private void Move(Vector2 direction)
+    {
+        _enemyRB.velocity = new Vector2(Math.Sign(direction.x) * _moveSpeedX, Math.Sign(direction.y) * _moveSpeedY);
+    }
+
+    private void Attack(Vector2 playerDirection)
     {
         _lastHit -= Time.fixedDeltaTime;
         if (_lastHit <= 0f)
         {
-            PlayerManager.Instance.ApplyDamage(_damage);
+            GameObject firedProjectile = Instantiate(_projectilePrefab, gameObject.transform);
+            firedProjectile.transform.Rotate(Vector3.forward, Vector2.SignedAngle(Vector2.up, playerDirection));
+            firedProjectile.GetComponent<Rigidbody2D>().velocity = playerDirection * firedProjectile.GetComponent<EnemyProjectile>().moveSpeed;
             _lastHit = _damageInterval;
         }
+    }
+
+    public void TargetHit()
+    {
+        PlayerManager.Instance.ApplyDamage(_damage);
     }
 
     public void ResetHitTime()
@@ -114,6 +133,8 @@ public class EnemyFlying : MonoBehaviour
 
     private void Die()
     {
+        if (UnityEngine.Random.value >= 0.5)
+            PickupManager.Instance.SpawnItem(transform.position, _dropList);
         Destroy(gameObject);
     }
 

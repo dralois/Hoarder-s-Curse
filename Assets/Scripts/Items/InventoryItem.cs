@@ -16,14 +16,9 @@ public abstract class InventoryItem : ScriptableObject {
     public Sprite sprite;
     public string itemName;
     public bool selected;
-
-    private static uint guid;
-    private uint uid;
-
+    
     protected InventoryItem(ItemType itemType)
     {
-        this.itemType = itemType;
-        uid = guid;
-        guid++;
+        this.itemType = itemType;  
     }
 }

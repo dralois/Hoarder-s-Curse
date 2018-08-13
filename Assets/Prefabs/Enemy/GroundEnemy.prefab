@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 50185744486530920}
   - component: {fileID: 114097102815486338}
   - component: {fileID: 70869136582582734}
+  - component: {fileID: 95864343077548378}
   m_Layer: 10
   m_Name: GroundEnemy
   m_TagString: Enemy
@@ -123,7 +124,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 51ad8c5cc2c8d2b46a925689ea70fa41, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &58059420546670496
 CircleCollider2D:
@@ -170,6 +171,24 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.46666667, y: 1}
   m_Direction: 0
+--- !u!95 &95864343077548378
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1351758361694336}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9e00962a0d79fde45be8e0b9aad3c5f0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114097102815486338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -243,12 +262,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7e8f00730f6f52748aac88784349d126, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d4822953db9d2ca47b0df66cc826c4a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.625, y: 1}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

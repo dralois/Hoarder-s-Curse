@@ -11,6 +11,12 @@ public class CameraMovement : MonoBehaviour {
     [SerializeField]
     private float lerpSpeedY;
 
+    private void Start()
+    {
+        // Set camera collider
+        gameObject.GetComponentInChildren<Collider2D>().transform.SetPositionAndRotation(Camera.main.ViewportToWorldPoint(new Vector3(0, .5f, 0)), Quaternion.identity);
+    }
+
     void Update () {
         // Lerp to position
         Vector3 newPos = new Vector3(Vector3.Lerp(transform.position, target.position, lerpSpeedX * Time.deltaTime).x,

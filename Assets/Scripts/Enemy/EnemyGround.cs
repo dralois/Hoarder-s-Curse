@@ -10,6 +10,7 @@ public class EnemyGround : MonoBehaviour {
     private Collider2D _enemyCollider;
     private Rigidbody2D _enemyRB;
     private float _lastHit;
+    private int _health;
 
     [Header("Movement")]
     [SerializeField]
@@ -24,7 +25,10 @@ public class EnemyGround : MonoBehaviour {
     [Header("Health")]
     [SerializeField]
     private int _maxHealth;
-    private int _health;
+    [Header("Drops")]
+    [SerializeField]
+    private List<InventoryItem> _dropList;
+
     private void Start()
     {
         // Retrieve the renderer
@@ -50,7 +54,7 @@ public class EnemyGround : MonoBehaviour {
             Vector2 playerDirectionNormalized = new Vector2(_playerTarget.position.x - gameObject.transform.position.x,
                                                   _playerTarget.position.y - gameObject.transform.position.y).normalized;
             
-            _enemyRB.velocity = new Vector2(Math.Sign(playerDirectionNormalized.x) * _moveSpeedX, _enemyRB.velocity.y);
+            Move(playerDirectionNormalized);
 
             _enemyRenderer.flipX = (playerDirectionNormalized.x < 0);
 
@@ -69,6 +73,11 @@ public class EnemyGround : MonoBehaviour {
             _enemyRB.constraints = RigidbodyConstraints2D.FreezeAll;
         }
 	}
+
+    private void Move(Vector2 direction)
+    {
+        _enemyRB.velocity = new Vector2(Math.Sign(direction.x) * _moveSpeedX, _enemyRB.velocity.y);
+    }
 
     public void Attack()
     {
@@ -101,6 +110,9 @@ public class EnemyGround : MonoBehaviour {
 
     private void Die()
     {
+        if(UnityEngine.Random.value >= 0.5)
+            PickupManager.Instance.SpawnItem(transform.position, _dropList);
+
         Destroy(gameObject);
     }
 

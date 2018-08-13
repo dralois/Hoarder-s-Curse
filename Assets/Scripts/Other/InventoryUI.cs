@@ -31,7 +31,7 @@ public class InventoryUI : MonoBehaviour
         // Iterate inventory and fill respective slots
 		foreach(InventoryItem.ItemType itemType in Enum.GetValues(typeof(InventoryItem.ItemType)))
         {
-            LinkedList<InventoryItem> items;
+            LinkedList<InventoryItem> items = new LinkedList<InventoryItem>();
 
             if (InventoryManager.Instance.Inventory.TryGetValue(itemType, out items))
             {
