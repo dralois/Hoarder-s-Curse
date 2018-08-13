@@ -119,7 +119,7 @@ public class EnemyGround : MonoBehaviour {
 
     private void SetHealthBar()
     {
-        healthSize.localScale = new Vector3(_health/_maxHealth, 1, 1);
+        healthSize.localScale = new Vector3((float)_health/_maxHealth, 1, 1);
     }
 
     public void SetPlayerTarget(Transform transform)
