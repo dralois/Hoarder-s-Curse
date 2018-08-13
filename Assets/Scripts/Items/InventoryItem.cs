@@ -15,12 +15,15 @@ public abstract class InventoryItem : ScriptableObject {
     public readonly ItemType itemType;
     public Sprite sprite;
     public string itemName;
+    public bool selected;
 
-    private static uint uid;
+    private static uint guid;
+    private uint uid;
 
     protected InventoryItem(ItemType itemType)
     {
         this.itemType = itemType;
-        uid++;
+        uid = guid;
+        guid++;
     }
 }

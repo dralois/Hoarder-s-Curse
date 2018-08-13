@@ -6,16 +6,27 @@ using UnityEngine.UI;
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField]
-    public GameObject inventoryItems;    
-    
-	void Start ()
+    private GameObject inventoryItems;
+    [SerializeField]
+    private GameObject backgroundItems;
+    [SerializeField]
+    private Color backgroundColor;
+    [SerializeField]
+    private Color selectedColor;
+
+    private Image[] backgrounds;
+    private Image[] images;
+
+    void Start ()
     {
-        InventoryManager.Instance._maxInventoryCount = (uint)inventoryItems.GetComponentsInChildren<Image>().Length;        
-	}
+        InventoryManager.Instance._maxInventoryCount = (uint)inventoryItems.GetComponentsInChildren<Image>().Length;
+        // Get images
+        backgrounds = backgroundItems.GetComponentsInChildren<Image>();
+        images = inventoryItems.GetComponentsInChildren<Image>();
+    }
 	
 	void Update ()
     {
-        Image[] images = inventoryItems.GetComponentsInChildren<Image>();
         int i = 0;
         // Iterate inventory and fill respective slots
 		foreach(InventoryItem.ItemType itemType in Enum.GetValues(typeof(InventoryItem.ItemType)))
@@ -27,6 +38,7 @@ public class InventoryUI : MonoBehaviour
                 foreach (InventoryItem item in items)
                 {
                     images[i].sprite = item.sprite;
+                    backgrounds[i].color = item.selected ? selectedColor : backgroundColor;
                     i++;
                 }
             }

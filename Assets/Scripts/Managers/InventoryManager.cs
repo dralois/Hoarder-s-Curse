@@ -8,6 +8,7 @@ public class InventoryManager : MonoBehaviour {
     private static InventoryManager _instance = null;
 
     private Dictionary<InventoryItem.ItemType, LinkedList<InventoryItem>> _inventory = null;
+    private InventoryItem _lastPickup;
     private uint _totalInventoryCount = 0;
 
     public static InventoryManager Instance
@@ -27,12 +28,11 @@ public class InventoryManager : MonoBehaviour {
         }
     }
 
-    // Returns current number of items
-    public uint currentCount
+    public InventoryItem LastPickup
     {
         get
         {
-            return _totalInventoryCount;
+            return _lastPickup;
         }
     }
 
@@ -45,13 +45,14 @@ public class InventoryManager : MonoBehaviour {
 
         if (!_inventory.TryGetValue(item.itemType, out items))
         {
-            _inventory.Add(item.itemType, new LinkedList<InventoryItem>());
+            _inventory.Add(item.itemType, new LinkedList<InventoryItem>());            
         }
 
         if (_totalInventoryCount < _maxInventoryCount)
         {
             _inventory[item.itemType].AddLast(item);
             _totalInventoryCount++;
+            _lastPickup = item;
             return true;
         }
         else
@@ -73,6 +74,8 @@ public class InventoryManager : MonoBehaviour {
         if (_inventory[item.itemType].Contains(item))
         {
             _inventory[item.itemType].Remove(item);
+            if (_lastPickup == item)
+                _lastPickup = null;
             _totalInventoryCount--;
             return true;
         }

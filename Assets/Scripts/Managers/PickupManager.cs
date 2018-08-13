@@ -23,7 +23,7 @@ public class PickupManager : MonoBehaviour {
         // Spawn a pickup
         GameObject spawned = Instantiate(pickupPrefab, at, Quaternion.identity);
         // Set the item
-        spawned.GetComponent<Pickup>().SetItem(spawnList[toSpawn]);
+        spawned.GetComponent<Pickup>().SetItem(Instantiate(spawnList[toSpawn]));
     }
 
     #endregion
@@ -70,14 +70,17 @@ public class PickupManager : MonoBehaviour {
         }
     }
 
-    public void pickupActive()
+    public bool pickupActive()
     {
         // If items available pick it up
         if(currTriggered > 0)
         {
-            current.Value.pickupItem();
+            bool worked = current.Value.pickupItem();
             switchActive();
+            return worked;
         }
+        // Not successful
+        return false;
     }
 
     #endregion

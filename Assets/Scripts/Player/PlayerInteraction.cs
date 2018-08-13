@@ -34,8 +34,12 @@ public class PlayerInteraction : MonoBehaviour
     private InventoryItem currentArmor;
 
     // Change current equipped weapon
-    private void setWeapon(InventoryItem item)
+    private void EquipWeapon(InventoryItem item)
     {
+        // Select item
+        item.selected = true;
+        if (currentWeapon != null)
+            currentWeapon.selected = false;
         // Set item
         currentWeapon = item;
         // Set Sprite
@@ -44,46 +48,71 @@ public class PlayerInteraction : MonoBehaviour
         switch (item.itemType)
         {
             case InventoryItem.ItemType.MeleeWeapon:
-            {
-                MeleeWeapon curr = (MeleeWeapon)item;
-                currentWeaponText.text = "DMG: " + curr.damage.ToString() + "\nRNG: " + curr.range.ToString();
-                break;
-            }
+                {
+                    item.selected = true;
+                    MeleeWeapon curr = (MeleeWeapon)item;
+                    currentType = InventoryItem.ItemType.MeleeWeapon;
+                    currentWeaponText.text = "DMG: " + curr.damage.ToString() + "\nRNG: " + curr.range.ToString();
+                    break;
+                }
             case InventoryItem.ItemType.RangedWeapon:
-            {
-                RangedWeapon curr = (RangedWeapon)item;
-                currentWeaponText.text = "DMG: " + curr.damage.ToString() + "\nRNG: " + curr.range.ToString();
-                break;
-            }
+                {
+                    RangedWeapon curr = (RangedWeapon)item;
+                    currentType = InventoryItem.ItemType.RangedWeapon;
+                    currentWeaponText.text = "DMG: " + curr.damage.ToString() + "\nRNG: " + curr.range.ToString();
+                    break;
+                }
             default:
-            {
-                currentWeaponText.text = "ERROR";
-                break;
-            }
+                {
+                    currentWeaponText.text = "ERROR";
+                    break;
+                }
         }
     }
 
     // Change current equipped armor
-    private void setArmor(InventoryItem item)
+    private void EquipArmor(InventoryItem item)
     {
-        // Set item
-        currentArmor = item;
-        // Set Sprite
-        currentArmorImage.sprite = item.sprite;
         // Set stats
         switch (item.itemType)
         {
             case InventoryItem.ItemType.Armor:
-            {
-                Armor curr = (Armor)item;
-                currentWeaponText.text = "RESIST:\n" + (Mathf.Round(curr.damageResistance * 100f)).ToString() + "%";
-                break;
-            }
+                {
+                    // Cast to armor
+                    Armor curr = (Armor)item;
+                    // If we have an armor
+                    if (currentArmor != null)
+                    {
+                        // If damage resitance is higher then equip
+                        if(curr.damageResistance > ((Armor)currentArmor).damageResistance)
+                        {
+                            item.selected = true;
+                            currentArmor.selected = false;
+                            // Set item
+                            currentArmor = item;
+                            // Set Sprite
+                            currentArmorImage.sprite = item.sprite;
+                            // Change text
+                            currentArmorText.text = "RESIST:\n" + (Mathf.Round(curr.damageResistance * 100f)).ToString() + "%";
+                        }
+                    }
+                    else
+                    {
+                        item.selected = true;
+                        // Set item
+                        currentArmor = item;
+                        // Set Sprite
+                        currentArmorImage.sprite = item.sprite;
+                        // Change text
+                        currentArmorText.text = "RESIST:\n" + (Mathf.Round(curr.damageResistance * 100f)).ToString() + "%";
+                    }
+                    break;
+                }
             default:
-            {
-                currentWeaponText.text = "ERROR";
-                break;
-            }
+                {
+                    currentWeaponText.text = "ERROR";
+                    break;
+                }
         }
     }
 
@@ -99,25 +128,14 @@ public class PlayerInteraction : MonoBehaviour
         if (InventoryManager.Instance.Inventory.TryGetValue(currentType, out currWeapons))
         {
             if(currWeapons.Count > 0)
-                setWeapon(currWeapons.First.Value);
+                EquipWeapon(currWeapons.First.Value);
         }
         else
         {
             // Switch back
             currentType = currentType == InventoryItem.ItemType.MeleeWeapon ? 
                 InventoryItem.ItemType.RangedWeapon : InventoryItem.ItemType.MeleeWeapon;
-            // Also set weapon if none was set
-            if(currentWeapon == null)
-            {
-                if (InventoryManager.Instance.Inventory.TryGetValue(currentType, out currWeapons))
-                {
-                    if (currWeapons.Count > 0)
-                        setWeapon(currWeapons.First.Value);
-                }
-            }
-        }
-
-        Debug.Log(currentType);
+        }        
     }
 
     private void Start()
@@ -140,22 +158,31 @@ public class PlayerInteraction : MonoBehaviour
         // On pickup pressed
         if (Input.GetButtonDown("Pickup"))
         {
-            PickupManager.Instance.pickupActive();
-            // Try set inital weapon
-            if (currentWeapon == null)
+            // If successful pickup
+            if (PickupManager.Instance.pickupActive())
             {
-                // Get current inventory
-                LinkedList<InventoryItem> currWeapons;
-                // Try selected type first
-                if (InventoryManager.Instance.Inventory.TryGetValue(currentType, out currWeapons))
+                // Equip item if it is equipable
+                switch(InventoryManager.Instance.LastPickup.itemType)
                 {
-                    if(currWeapons.Count > 0)
-                        currentWeapon = currWeapons.First.Value;
-                }
-                else
-                {
-                    // Attempt other type
-                    changeWeaponType();
+                    case InventoryItem.ItemType.MeleeWeapon:
+                    {
+                        EquipWeapon(InventoryManager.Instance.LastPickup);
+                        break;
+                    }
+                    case InventoryItem.ItemType.RangedWeapon:
+                    {
+                        EquipWeapon(InventoryManager.Instance.LastPickup);
+                        break;
+                    }
+                    case InventoryItem.ItemType.Armor:
+                    {
+                        EquipArmor(InventoryManager.Instance.LastPickup);
+                        break;
+                    }
+                    default:
+                    {
+                        break;
+                    }
                 }
             }
         }
@@ -193,7 +220,7 @@ public class PlayerInteraction : MonoBehaviour
                     // Find the weapon in the inventory
                     LinkedListNode<InventoryItem> node = currWeapons.Find(currentWeapon);
                     // Select the next weapon (or first again)
-                    setWeapon(node.Next == null ? node.Value : node.Next.Value);
+                    EquipWeapon(node.Next == null ? currWeapons.First.Value : node.Next.Value);
                 }
             }
             else
@@ -204,7 +231,7 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     // Select the last weapon if possible
                     if(currWeapons.Count > 0)
-                        setWeapon(currWeapons.Last.Value);
+                        EquipWeapon(currWeapons.Last.Value);
                 }
             }
         }
@@ -221,8 +248,8 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     // Find the weapon in the inventory
                     LinkedListNode<InventoryItem> node = currWeapons.Find(currentWeapon);
-                    // Select the next weapon (or first again)
-                    setWeapon(node.Previous == null ? node.Value : node.Previous.Value);
+                    // Select the next weapon (or last again)
+                    EquipWeapon(node.Previous == null ? currWeapons.Last.Value : node.Previous.Value);
                 }
             }
             else
@@ -233,7 +260,7 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     // Select the first weapon if possible
                     if (currWeapons.Count > 0)
-                        setWeapon(currWeapons.First.Value);
+                        EquipWeapon(currWeapons.First.Value);
                 }
             }
         }
