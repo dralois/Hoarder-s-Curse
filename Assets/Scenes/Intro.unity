@@ -249,17 +249,24 @@ Prefab:
       propertyPath: m_Text
       value: 'CONTROLS:
 
-        DPAD UP: SWITCH WEAPON TYPE
 
-        TRIGGER LEFT: STRENGTH POTION
+        LEFT STICK / WASD: MOVE
 
-        TRIGGER RIGHT: HEALTH POTION
+        DPAD LEFT / Q: PREVIOUS WEAPON
 
-        X BUTTON: ATTACK
+        DPAD RIGHT / E: NEXT WEAPON
 
-        A BUTTON: JUMP
+        DPAD UP / F: SWITCH WEAPON TYPE
 
-        Y BUTTON: PICKUP ITEM
+        TRIGGER LEFT / T: STRENGTH POTION
+
+        TRIGGER RIGHT / R: HEALTH POTION
+
+        X BUTTON / C: ATTACK
+
+        A BUTTON / SPACE: JUMP
+
+        Y BUTTON / V: PICKUP ITEM
 
 
         PRESS ANYTHING TO START'
@@ -268,6 +275,11 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114964309114100918, guid: 47e4b91418ea7d645bfb2acdfb4cba89,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47e4b91418ea7d645bfb2acdfb4cba89, type: 2}
