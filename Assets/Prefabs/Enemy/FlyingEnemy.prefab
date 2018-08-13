@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4450958484329946}
   - component: {fileID: 212295722761075058}
   - component: {fileID: 50185744486530920}
-  - component: {fileID: 114097102815486338}
   - component: {fileID: 70869136582582734}
+  - component: {fileID: 114758700977102582}
   m_Layer: 0
   m_Name: FlyingEnemy
   m_TagString: Untagged
@@ -181,22 +181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d53ba23637fd641becab0a2c4b2284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114097102815486338
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1351758361694336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d6a5d735e611134b92aa31c66b6641d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _moveSpeedX: 4
-  _jumpSpeed: 10
-  _damage: 0
-  _damageInterval: 0
-  _maxHealth: 0
 --- !u!114 &114191571274344726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -208,6 +192,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60de316c35c3162409d9f6b581a385ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114758700977102582
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1351758361694336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd8140000ac4d94fa13102931b3f39d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeedX: 0
+  _moveSpeedY: 0
+  _damage: 0.05
+  _damageInterval: 3
+  _maxHealth: 100
 --- !u!212 &212295722761075058
 SpriteRenderer:
   m_ObjectHideFlags: 1
