@@ -74,7 +74,7 @@ public class EnemyFlying : MonoBehaviour
                 else
                     Move(playerDirection);
 
-                Attack(playerDirection);
+                Attack(playerDirection.normalized);
             }
 
             _enemyRenderer.flipX = (playerDirection.x < 0);
@@ -99,9 +99,6 @@ public class EnemyFlying : MonoBehaviour
             GameObject firedProjectile = Instantiate(_projectilePrefab, gameObject.transform);
             firedProjectile.transform.Rotate(Vector3.forward, Vector2.SignedAngle(Vector2.up, playerDirection));
             firedProjectile.GetComponent<Rigidbody2D>().velocity = playerDirection * firedProjectile.GetComponent<EnemyProjectile>().moveSpeed;
-            Debug.Log(firedProjectile.GetComponent<EnemyProjectile>().moveSpeed);
-            Debug.Log(playerDirection * firedProjectile.GetComponent<EnemyProjectile>().moveSpeed);
-            Debug.Log(firedProjectile.GetComponent<Rigidbody2D>().velocity);
             _lastHit = _damageInterval;
         }
     }
