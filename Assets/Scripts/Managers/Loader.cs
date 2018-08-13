@@ -9,6 +9,8 @@ public class Loader : MonoBehaviour {
     private GameObject playerManager;
     [SerializeField]
     private GameObject pickupManager;
+    [SerializeField]
+    private GameObject levelManager;
 
     // Load managers on game start
     void Awake()
@@ -19,5 +21,7 @@ public class Loader : MonoBehaviour {
             Instantiate(playerManager);
         if (PickupManager.Instance == null)
             Instantiate(pickupManager);
+        if (LevelManager.Instance == null)
+            Instantiate(levelManager);
     }
 }
