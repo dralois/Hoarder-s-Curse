@@ -126,7 +126,23 @@ public class PlayerInteraction : MonoBehaviour
                 // Otherwise has to be ranged weapon
                 else
                 {
-                
+                    // Cast to weapon
+                    RangedWeapon curr = (RangedWeapon)currentWeapon;
+                    // Play corresponding animation
+                    switch (curr.rangedWeaponType)
+                    {
+                        case RangedWeapon.RangedWeaponType.Bow:
+                            {
+                                playerAnim.SetTrigger("AttackBow");
+                                break;
+                            }
+                        default:
+                            {
+                                Debug.LogError("Invalid ranged weapon type");
+                                break;
+                            }
+                    }
+                    // Fire projectile
                 }
             }
         }

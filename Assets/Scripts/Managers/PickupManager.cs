@@ -19,7 +19,7 @@ public class PickupManager : MonoBehaviour {
     public void SpawnItem(Vector2 at, List<InventoryItem> spawnList)
     {
         // Select random number in range
-        int toSpawn = Random.Range(0, spawnList.Count - 1);
+        int toSpawn = Random.Range(0, spawnList.Count);
         // Spawn a pickup
         GameObject spawned = Instantiate(pickupPrefab, at, Quaternion.identity);
         // Set the item
