@@ -69,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1383632228557140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 2, z: 0}
+  m_LocalPosition: {x: -3, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4495408533343572}
@@ -95,7 +95,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1352134557400936}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3.5, y: 1.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4163295359837800}
@@ -183,6 +183,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   everythang:
   - {fileID: 11400000, guid: 085fc19f34d6c594d95b851182921219, type: 2}
+  - {fileID: 11400000, guid: bc0eee3d93900f6458ce17ee8f2c0e45, type: 2}
+  _strengthPotionMaxDuration: 0
   projectilePrefab: {fileID: 1511176817737220, guid: 6ba001444af68e946a75a7ad6ae60260,
     type: 2}
 --- !u!212 &212288755768603958
