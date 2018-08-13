@@ -8,8 +8,8 @@ public class InventoryManager : MonoBehaviour {
     private static InventoryManager _instance = null;
 
     private Dictionary<InventoryItem.ItemType, LinkedList<InventoryItem>> _inventory = null;
-    private InventoryItem _lastPickup;
     private uint _totalInventoryCount = 0;
+    private InventoryItem _lastPickup;
 
     public static InventoryManager Instance
     {
@@ -83,6 +83,13 @@ public class InventoryManager : MonoBehaviour {
         {
             return false;
         }
+    }
+
+    public void Empty()
+    {
+        _inventory = new Dictionary<InventoryItem.ItemType, LinkedList<InventoryItem>>();
+        _totalInventoryCount = 0;        
+        _lastPickup = null;
     }
 
     #endregion
