@@ -28,6 +28,9 @@ public class EnemyGround : MonoBehaviour {
     [Header("Drops")]
     [SerializeField]
     private List<InventoryItem> _dropList;
+    [Header("Objects")]
+    [SerializeField]
+    private RectTransform healthSize;
 
     private void Start()
     {
@@ -97,20 +100,26 @@ public class EnemyGround : MonoBehaviour {
         if (_health - amount > 0)
         {
             _health -= amount;
+            SetHealthBar();
         }
         else
         {
             _health = 0;
+            SetHealthBar();
             Die();
         }
     }
 
     private void Die()
     {
-        if(UnityEngine.Random.value >= 0.5)
-            PickupManager.Instance.SpawnItem(transform.position, _dropList);
+        PickupManager.Instance.SpawnItem(transform.position, _dropList);
 
         Destroy(gameObject);
+    }
+
+    private void SetHealthBar()
+    {
+        healthSize.localScale = new Vector3(_health/_maxHealth, 1, 1);
     }
 
     public void SetPlayerTarget(Transform transform)
