@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -25,6 +24,10 @@ public class PlayerInteraction : MonoBehaviour
     private List<InventoryItem> everythang;
     [SerializeField]
     private float _strengthPotionMaxDuration;
+
+    // Prefab for bow projectile
+    [SerializeField]
+    private GameObject projectilePrefab;
 
     // Current equipment
     private InventoryItem.ItemType currentType = InventoryItem.ItemType.MeleeWeapon;
@@ -203,6 +206,9 @@ public class PlayerInteraction : MonoBehaviour
                             }
                     }
                     // Fire projectile
+                    GameObject newProj = Instantiate(projectilePrefab, transform);
+                    newProj.GetComponent<PlayerProjectile>().damage = curr.damage;
+                    newProj.GetComponent<Rigidbody2D>().velocity = new Vector3(playerRenderer.flipX ? -1 : 1, 0) * newProj.GetComponent<PlayerProjectile>().moveSpeed;
                 }
             }
         }
