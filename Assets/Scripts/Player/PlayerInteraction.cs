@@ -15,128 +15,15 @@ public class PlayerInteraction : MonoBehaviour
     
     // Other stuff
     private Animator playerAnim;
+    private EquippedUI currEquippedUI;
+
     [SerializeField]
     private List<InventoryItem> everythang;
-
-    // UI stuff
-    [SerializeField]
-    private Image currentWeaponImage;
-    [SerializeField]
-    private Text currentWeaponText;
-    [SerializeField]
-    private Image currentArmorImage;
-    [SerializeField]
-    private Text currentArmorText;
 
     // Current equipment
     private InventoryItem.ItemType currentType = InventoryItem.ItemType.MeleeWeapon;
     private InventoryItem currentWeapon;
     private InventoryItem currentArmor;
-
-    // Change current equipped weapon
-    private void EquipWeapon(InventoryItem item)
-    {
-        // Select item
-        item.selected = true;
-        if (currentWeapon != null)
-            currentWeapon.selected = false;
-        // Set item
-        currentWeapon = item;
-        // Set Sprite
-        currentWeaponImage.sprite = item.sprite;
-        // Set stats
-        switch (item.itemType)
-        {
-            case InventoryItem.ItemType.MeleeWeapon:
-                {
-                    item.selected = true;
-                    MeleeWeapon curr = (MeleeWeapon)item;
-                    currentType = InventoryItem.ItemType.MeleeWeapon;
-                    currentWeaponText.text = "DMG: " + curr.damage.ToString() + "\nRNG: " + curr.range.ToString();
-                    break;
-                }
-            case InventoryItem.ItemType.RangedWeapon:
-                {
-                    RangedWeapon curr = (RangedWeapon)item;
-                    currentType = InventoryItem.ItemType.RangedWeapon;
-                    currentWeaponText.text = "DMG: " + curr.damage.ToString() + "\nRNG: " + curr.range.ToString();
-                    break;
-                }
-            default:
-                {
-                    currentWeaponText.text = "ERROR";
-                    break;
-                }
-        }
-    }
-
-    // Change current equipped armor
-    private void EquipArmor(InventoryItem item)
-    {
-        // Set stats
-        switch (item.itemType)
-        {
-            case InventoryItem.ItemType.Armor:
-                {
-                    // Cast to armor
-                    Armor curr = (Armor)item;
-                    // If we have an armor
-                    if (currentArmor != null)
-                    {
-                        // If damage resitance is higher then equip
-                        if(curr.damageResistance > ((Armor)currentArmor).damageResistance)
-                        {
-                            item.selected = true;
-                            currentArmor.selected = false;
-                            // Set item
-                            currentArmor = item;
-                            // Set Sprite
-                            currentArmorImage.sprite = item.sprite;
-                            // Change text
-                            currentArmorText.text = "RESIST:\n" + (Mathf.Round(curr.damageResistance * 100f)).ToString() + "%";
-                        }
-                    }
-                    else
-                    {
-                        item.selected = true;
-                        // Set item
-                        currentArmor = item;
-                        // Set Sprite
-                        currentArmorImage.sprite = item.sprite;
-                        // Change text
-                        currentArmorText.text = "RESIST:\n" + (Mathf.Round(curr.damageResistance * 100f)).ToString() + "%";
-                    }
-                    break;
-                }
-            default:
-                {
-                    currentWeaponText.text = "ERROR";
-                    break;
-                }
-        }
-    }
-
-    // Change weapon type
-    private void changeWeaponType()
-    {
-        // Change type
-        currentType = currentType == InventoryItem.ItemType.MeleeWeapon ? 
-            InventoryItem.ItemType.RangedWeapon : InventoryItem.ItemType.MeleeWeapon;
-        // Get current inventory
-        LinkedList<InventoryItem> currWeapons;
-        // Select the first available one if there is one or dont change type
-        if (InventoryManager.Instance.Inventory.TryGetValue(currentType, out currWeapons))
-        {
-            if(currWeapons.Count > 0)
-                EquipWeapon(currWeapons.First.Value);
-        }
-        else
-        {
-            // Switch back
-            currentType = currentType == InventoryItem.ItemType.MeleeWeapon ? 
-                InventoryItem.ItemType.RangedWeapon : InventoryItem.ItemType.MeleeWeapon;
-        }        
-    }
 
     private void Start()
     {
@@ -190,7 +77,18 @@ public class PlayerInteraction : MonoBehaviour
         // On Attack
         if (Input.GetButtonDown("Attack"))
         {
-            playerAnim.SetTrigger("Attack");
+            // If melee weapon equiped
+            if(currentWeapon.itemType == InventoryItem.ItemType.MeleeWeapon)
+            {
+                playerAnim.SetTrigger("Attack");
+                //RaycastHit2D[] hits = Physics2D.Raycast(transform.position, );
+
+            }
+            // Otherwise has to be ranged weapon
+            else
+            {
+                
+            }
         }
 
         // On switch pickup pressed
@@ -264,5 +162,127 @@ public class PlayerInteraction : MonoBehaviour
                 }
             }
         }
-    }    
+    }
+
+    #region Inventory functions
+
+    private EquippedUI equippedUI
+    {
+        get
+        {
+            if (currEquippedUI == null)
+            {
+                currEquippedUI = FindObjectOfType<EquippedUI>();
+            }
+            // Return UI
+            return currEquippedUI;
+        }
+    }
+
+    // Change current equipped weapon
+    private void EquipWeapon(InventoryItem item)
+    {
+        // Select item
+        item.selected = true;
+        if (currentWeapon != null)
+            currentWeapon.selected = false;
+        // Set item
+        currentWeapon = item;
+        // Set stats
+        switch (item.itemType)
+        {
+            case InventoryItem.ItemType.MeleeWeapon:
+                {
+                    item.selected = true;
+                    MeleeWeapon curr = (MeleeWeapon)item;
+                    currentType = InventoryItem.ItemType.MeleeWeapon;
+                    if (equippedUI != null)
+                        equippedUI.EquipWeapon(item);
+                    break;
+                }
+            case InventoryItem.ItemType.RangedWeapon:
+                {
+                    RangedWeapon curr = (RangedWeapon)item;
+                    currentType = InventoryItem.ItemType.RangedWeapon;
+                    if (equippedUI != null)
+                        equippedUI.EquipWeapon(item);
+                    break;
+                }
+            default:
+                {
+                    break;
+                }
+        }
+    }
+
+    // Change current equipped armor
+    private void EquipArmor(InventoryItem item)
+    {
+        // Set stats
+        switch (item.itemType)
+        {
+            case InventoryItem.ItemType.Armor:
+                {
+                    // Cast to armor
+                    Armor curr = (Armor)item;
+                    // If we have an armor
+                    if (currentArmor != null)
+                    {
+                        // If damage resitance is higher then equip
+                        if (curr.damageResistance > ((Armor)currentArmor).damageResistance)
+                        {
+                            item.selected = true;
+                            currentArmor.selected = false;
+                            // Set item
+                            currentArmor = item;
+                            // Apply armor
+                            PlayerManager.Instance.setResistance(curr.damageResistance);
+                            // Set UI
+                            if (equippedUI != null)
+                                equippedUI.EquipArmor(item);
+                        }
+                    }
+                    else
+                    {
+                        item.selected = true;
+                        // Set item
+                        currentArmor = item;
+                        // Apply armor
+                        PlayerManager.Instance.setResistance(curr.damageResistance);
+                        // Set UI
+                        if (equippedUI != null)
+                            equippedUI.EquipArmor(item);
+                    }
+                    break;
+                }
+            default:
+                {
+                    break;
+                }
+        }
+    }
+
+    // Change weapon type
+    private void changeWeaponType()
+    {
+        // Change type
+        currentType = currentType == InventoryItem.ItemType.MeleeWeapon ?
+            InventoryItem.ItemType.RangedWeapon : InventoryItem.ItemType.MeleeWeapon;
+        // Get current inventory
+        LinkedList<InventoryItem> currWeapons;
+        // Select the first available one if there is one or dont change type
+        if (InventoryManager.Instance.Inventory.TryGetValue(currentType, out currWeapons))
+        {
+            if (currWeapons.Count > 0)
+                EquipWeapon(currWeapons.First.Value);
+        }
+        else
+        {
+            // Switch back
+            currentType = currentType == InventoryItem.ItemType.MeleeWeapon ?
+                InventoryItem.ItemType.RangedWeapon : InventoryItem.ItemType.MeleeWeapon;
+        }
+    }
+
+    #endregion
 }

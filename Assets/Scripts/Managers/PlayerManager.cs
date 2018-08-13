@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -64,5 +63,11 @@ public class PlayerManager : MonoBehaviour
         }
         // Set Health
         healthUI.SetHealthRemaining(health);
+    }
+
+    // Sets resistance to a percentage
+    public void setResistance(float resist)
+    {
+        reduction = 1 - resist;
     }
 }

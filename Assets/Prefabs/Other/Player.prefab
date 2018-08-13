@@ -190,10 +190,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 91c3fcd3142b1c04987ddf052c97b022, type: 2}
   - {fileID: 11400000, guid: caf415fab940ff949ba5ee1bc12d91c2, type: 2}
   - {fileID: 11400000, guid: ea8a464c2bd34704ca356c9840ec926d, type: 2}
-  currentWeaponImage: {fileID: 0}
-  currentWeaponText: {fileID: 0}
-  currentArmorImage: {fileID: 0}
-  currentArmorText: {fileID: 0}
 --- !u!212 &212288755768603958
 SpriteRenderer:
   m_ObjectHideFlags: 1
