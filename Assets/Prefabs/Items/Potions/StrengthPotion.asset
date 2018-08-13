@@ -13,4 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 6d6551050863dc642a19ff157cc45ad2, type: 3}
   itemName: Strength Potion
+  selected: 0
+  isUsed: 0
+  emptyPotion: {fileID: 21300000, guid: c2a99f1f6d6dab1498df4e8ffa75c1d4, type: 3}
   potionType: 1
