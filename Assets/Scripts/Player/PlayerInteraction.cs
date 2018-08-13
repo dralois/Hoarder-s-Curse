@@ -232,7 +232,6 @@ public class PlayerInteraction : MonoBehaviour
         // Debug drop item / switch weapon type
         if (up)
         {
-            PickupManager.Instance.SpawnItem(transform.position, everythang);
             // Change type
             changeWeaponType();
         }
