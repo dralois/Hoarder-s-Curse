@@ -205,7 +205,21 @@ MonoBehaviour:
   _damage: 0.01
   _damageInterval: 2
   _maxHealth: 100
-  _dropList: []
+  _dropList:
+  - {fileID: 11400000, guid: ea8a464c2bd34704ca356c9840ec926d, type: 2}
+  - {fileID: 11400000, guid: b94ba80779d90574cb9090543b2a40aa, type: 2}
+  - {fileID: 11400000, guid: 35d78702a1a496a4da6d85bf5981d125, type: 2}
+  - {fileID: 11400000, guid: 9e9e9a9ea6264fe479b82a83d252ba5d, type: 2}
+  - {fileID: 11400000, guid: a3ca53a01f28dcf42ba1de5c6844c616, type: 2}
+  - {fileID: 11400000, guid: 032f68e17f831ae46bc327a4ad7e5cd8, type: 2}
+  - {fileID: 11400000, guid: 377469f77fe0a224fa822c6ab4aeabd2, type: 2}
+  - {fileID: 11400000, guid: 1e859f1d5e771f34793e97a4a92cce57, type: 2}
+  - {fileID: 11400000, guid: 74487a90cff89494f851fcd4f6de7cc6, type: 2}
+  - {fileID: 11400000, guid: d09045867b27abb4c9c9f0d1ba704850, type: 2}
+  - {fileID: 11400000, guid: 5c8d269416f320e47b8fa165e88dd1e3, type: 2}
+  - {fileID: 11400000, guid: fda897d9ba3a1724d8dbfe2def12e61b, type: 2}
+  - {fileID: 11400000, guid: df429c3ac10614c40a0124baf9bb5110, type: 2}
+  - {fileID: 11400000, guid: 52c1f5b9370e6334ea79077c8b851e90, type: 2}
 --- !u!114 &114424089485311054
 MonoBehaviour:
   m_ObjectHideFlags: 1
