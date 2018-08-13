@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System;
+﻿using System;
 using UnityEngine;
 
 public class EnemyFlying : MonoBehaviour {
@@ -53,7 +51,11 @@ public class EnemyFlying : MonoBehaviour {
             Vector2 playerDirection = new Vector2(_playerTarget.position.x - gameObject.transform.position.x,
                                                   _playerTarget.position.y - gameObject.transform.position.y);
 
-            Physics2D.Raycast((Vector2)gameObject.transform.position, playerDirection);
+            RaycastHit2D raycastHit = Physics2D.Raycast(gameObject.transform.position, playerDirection);
+            if (raycastHit.collider.tag != "Player")
+            {
+                Vector2 moveDirection = UnityEngine.Random.insideUnitCircle;
+            }
 
             _enemyRB.velocity = new Vector2(Math.Sign(playerDirection.x) * _moveSpeedX, _enemyRB.velocity.y);
 

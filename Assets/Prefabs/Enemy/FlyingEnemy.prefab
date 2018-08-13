@@ -22,12 +22,8 @@ GameObject:
   - component: {fileID: 212295722761075058}
   - component: {fileID: 50185744486530920}
   - component: {fileID: 70869136582582734}
-<<<<<<< HEAD
   - component: {fileID: 114758700977102582}
-  m_Layer: 0
-=======
   m_Layer: 10
->>>>>>> c071ff159c09b35e70274e399fbd0569ba36b7e7
   m_Name: FlyingEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
