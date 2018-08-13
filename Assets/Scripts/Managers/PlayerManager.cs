@@ -6,7 +6,7 @@ public class PlayerManager : MonoBehaviour
     private static PlayerManager _instance = null;    
     // Vars
     private float health = 1.0f;
-    private float reduction = 0.0f;
+    private float reduction = 1.0f;
     private float dmgAmp = 1.0f;
     // Keeps track ingame
     private StatsUI statsUI;
@@ -91,6 +91,7 @@ public class PlayerManager : MonoBehaviour
     public void HealingPotion()
     {
         health = 1f;
+        PlayerStatsUI.SetHealthRemaining(health);
     }
 
     #region Singleton
