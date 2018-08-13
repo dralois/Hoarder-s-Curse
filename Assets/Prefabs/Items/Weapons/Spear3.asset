@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: bae237cd94f53104d9eab32b4593bd9c, type: 3}
   itemName: Knight Pearcer
+  selected: 0
   meleeWeaponType: 1
-  damage: 5
+  damage: 20
   range: 5

@@ -168,11 +168,11 @@ MonoBehaviour:
   _moveSpeedX: 1.2
   _moveSpeedY: 1.2
   _minDistanceToPlayer: 2
-  _damage: 0.05
+  _damage: 0.1
   _projectilePrefab: {fileID: 1620664015468358, guid: a3383b7f2b24f0346a018d015eca3226,
     type: 2}
   _damageInterval: 3
-  _maxHealth: 100
+  _maxHealth: 40
   _dropList:
   - {fileID: 11400000, guid: 4978461fe8f60414db3e5c4b4ff4f486, type: 2}
   - {fileID: 11400000, guid: 91c3fcd3142b1c04987ddf052c97b022, type: 2}

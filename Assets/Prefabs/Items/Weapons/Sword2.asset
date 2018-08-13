@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: c269163e52eac7d42a1a726b44f47fdb, type: 3}
   itemName: Fire Sword
+  selected: 0
   meleeWeaponType: 0
-  damage: 10
-  range: 1
+  damage: 30
+  range: 1.5

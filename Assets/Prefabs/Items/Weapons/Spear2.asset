@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: cffcbb79b44b30f44b9769f32cb16a92, type: 3}
   itemName: A Trusty Lance
+  selected: 0
   meleeWeaponType: 1
-  damage: 3
-  range: 5
+  damage: 15
+  range: 4

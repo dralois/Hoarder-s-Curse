@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 018cddde0c9d08e4899f3b783e5ee33d, type: 3}
   itemName: Kings Bow
+  selected: 0
   rangedWeaponType: 1
-  damage: 10
+  damage: 20
   range: 40

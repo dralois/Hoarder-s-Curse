@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: bd1faebef5385914a9faab9ee6174247, type: 3}
   itemName: Simple Spear
+  selected: 0
   meleeWeaponType: 1
-  damage: 1
-  range: 5
+  damage: 10
+  range: 3

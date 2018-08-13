@@ -13,5 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 8c7dd1c278a7bb94d9468f8f06f502a4, type: 3}
   itemName: Diamond Armor
+  selected: 0
   armorType: 0
-  damageResistance: 0.5
+  damageResistance: 0.8

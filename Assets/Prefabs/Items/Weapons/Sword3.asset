@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 5fe6cedfbe283824c8145b88834614e9, type: 3}
   itemName: Burning Fiend
+  selected: 0
   meleeWeaponType: 0
-  damage: 5
-  range: 3
+  damage: 50
+  range: 1.5

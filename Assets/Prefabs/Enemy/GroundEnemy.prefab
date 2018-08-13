@@ -202,9 +202,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeedX: 3
   _jumpSpeed: 10
-  _damage: 0.01
+  _damage: 0.05
   _damageInterval: 2
-  _maxHealth: 100
+  _maxHealth: 50
   _dropList:
   - {fileID: 11400000, guid: 4978461fe8f60414db3e5c4b4ff4f486, type: 2}
   - {fileID: 11400000, guid: 91c3fcd3142b1c04987ddf052c97b022, type: 2}

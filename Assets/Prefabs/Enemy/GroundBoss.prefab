@@ -180,7 +180,7 @@ Animator:
   m_GameObject: {fileID: 1317357063908972}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9e00962a0d79fde45be8e0b9aad3c5f0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 71c030baed02beb4e8956d7044cf996f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -202,9 +202,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeedX: 3
   _jumpSpeed: 10
-  _damage: 0.01
+  _damage: 0.2
   _damageInterval: 2
-  _maxHealth: 100
+  _maxHealth: 200
   _dropList:
   - {fileID: 11400000, guid: ea8a464c2bd34704ca356c9840ec926d, type: 2}
   - {fileID: 11400000, guid: b94ba80779d90574cb9090543b2a40aa, type: 2}
