@@ -31,15 +31,14 @@ public class PlayerManager : MonoBehaviour
     // Apply a certain amount of damage
     public void ApplyDamage(float amount)
     {
-        // Reduce or set to zero
+        // Reduce or set to kill player
         if (health - amount > 0)
         {
             health -= amount * reduction;
         }
         else
         {
-            health = 0;
-            isAlive = false;
+            Kill();
         }
         // Set Health
         PlayerStatsUI.SetHealthRemaining(health);
