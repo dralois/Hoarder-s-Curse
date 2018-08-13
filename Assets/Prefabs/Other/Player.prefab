@@ -69,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1383632228557140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 2, z: 0}
+  m_LocalPosition: {x: -3, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4495408533343572}
@@ -136,7 +136,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.46666667, y: 0.8}
+  m_Size: {x: 0.47, y: 0.8}
   m_Direction: 0
 --- !u!95 &95774577074430506
 Animator:
@@ -183,8 +183,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   everythang:
   - {fileID: 11400000, guid: 085fc19f34d6c594d95b851182921219, type: 2}
-  - {fileID: 11400000, guid: 01cbd077bb47f53439b9c0aecdf19d91, type: 2}
-  - {fileID: 11400000, guid: 52c1f5b9370e6334ea79077c8b851e90, type: 2}
+  - {fileID: 11400000, guid: bc0eee3d93900f6458ce17ee8f2c0e45, type: 2}
+  _strengthPotionMaxDuration: 0
+  projectilePrefab: {fileID: 1511176817737220, guid: 6ba001444af68e946a75a7ad6ae60260,
+    type: 2}
+  hitPrefab: {fileID: 1604142297409246, guid: 3ed82e94d6ae6544fa2bf22a91b20ee7, type: 2}
 --- !u!212 &212288755768603958
 SpriteRenderer:
   m_ObjectHideFlags: 1

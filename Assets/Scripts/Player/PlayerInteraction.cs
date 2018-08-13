@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -13,6 +12,8 @@ public class PlayerInteraction : MonoBehaviour
     // Last direction
     private int lastDpadX;
     private int lastDpadY;
+    // Strength potion duration
+    private float _strengthPotionCurrentDuration;
     
     // Other stuff
     private Animator playerAnim;
@@ -21,6 +22,14 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField]
     private List<InventoryItem> everythang;
+    [SerializeField]
+    private float _strengthPotionMaxDuration;
+
+    // Prefab for bow projectile
+    [SerializeField]
+    private GameObject projectilePrefab;
+    [SerializeField]
+    private GameObject hitPrefab;
 
     // Current equipment
     private InventoryItem.ItemType currentType = InventoryItem.ItemType.MeleeWeapon;
@@ -33,6 +42,8 @@ public class PlayerInteraction : MonoBehaviour
         playerAnim = gameObject.GetComponentInChildren<Animator>();
         // Retrieve renderer
         playerRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
+        // Set the strength potion duration to 0
+        _strengthPotionCurrentDuration = 0f;
     }
 
     void Update ()
@@ -107,7 +118,28 @@ public class PlayerInteraction : MonoBehaviour
         // On StrengthPotion pressed
         if (Input.GetButtonDown("StrengthPotion"))
         {
+            LinkedList<InventoryItem> potions;
 
+            if (InventoryManager.Instance.Inventory.TryGetValue(InventoryItem.ItemType.Potion, out potions))
+            {
+                // Get the First Potion
+                LinkedListNode<InventoryItem> node = potions.First;
+                while (node != null)
+                {
+                    if (((Potion)node.Value).potionType == Potion.PotionType.Strength)
+                    {
+                        Potion currPotion = (Potion)node.Value;
+                        currPotion.isUsed = true;
+                        currPotion.potionType = Potion.PotionType.Empty;
+                        currPotion.sprite = currPotion.emptyPotion;
+
+                        PlayerManager.Instance.SetBuff(true);
+                        _strengthPotionCurrentDuration = _strengthPotionMaxDuration;
+                        break;
+                    }
+                    node = node.Next;
+                }
+            }
         }
 
         // On Attack
@@ -153,6 +185,8 @@ public class PlayerInteraction : MonoBehaviour
                             hit.rigidbody.AddForceAtPosition((new Vector3(playerRenderer.flipX ? -1 : 1, 0)) * curr.damage, hit.point, ForceMode2D.Impulse);
                             // Damage
                             hit.transform.GetComponent<EnemyGround>().ApplyDamage(curr.damage * (int) PlayerManager.Instance.DmgAmp());
+                            // Particle
+                            Instantiate(hitPrefab, hit.point, Quaternion.identity, hit.transform);
                         }
                     }
                 }
@@ -176,6 +210,10 @@ public class PlayerInteraction : MonoBehaviour
                             }
                     }
                     // Fire projectile
+                    GameObject newProj = Instantiate(projectilePrefab, transform.position, Quaternion.Euler(0, 0, playerRenderer.flipX ? 0 : 180));
+                    newProj.GetComponent<PlayerProjectile>().damage = curr.damage;
+                    newProj.GetComponent<PlayerProjectile>().range = curr.range;
+                    newProj.GetComponent<Rigidbody2D>().velocity = new Vector3(playerRenderer.flipX ? -1 : 1, 0) * newProj.GetComponent<PlayerProjectile>().moveSpeed;
                 }
             }
         }
@@ -249,6 +287,16 @@ public class PlayerInteraction : MonoBehaviour
                     if (currWeapons.Count > 0)
                         EquipWeapon(currWeapons.First.Value);
                 }
+            }
+        }
+
+        // Keep track of the strength potion effect
+        if (PlayerManager.Instance.isBuffed)
+        {
+            _strengthPotionCurrentDuration -= Time.fixedDeltaTime;
+            if (_strengthPotionCurrentDuration <= 0f)
+            {
+                PlayerManager.Instance.SetBuff(false);
             }
         }
     }
