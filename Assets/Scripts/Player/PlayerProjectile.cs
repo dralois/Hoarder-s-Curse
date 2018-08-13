@@ -8,6 +8,23 @@ public class PlayerProjectile : MonoBehaviour
     public float moveSpeed;
 
     public int damage;
+    public float range;
+
+    private Vector3 startPos;
+
+    private void Start()
+    {
+        startPos = transform.position;
+    }
+
+    private void Update()
+    {
+        // Remove after range reached
+        if(Mathf.Abs((transform.position - startPos).x) > range)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -28,6 +28,8 @@ public class PlayerInteraction : MonoBehaviour
     // Prefab for bow projectile
     [SerializeField]
     private GameObject projectilePrefab;
+    [SerializeField]
+    private GameObject hitPrefab;
 
     // Current equipment
     private InventoryItem.ItemType currentType = InventoryItem.ItemType.MeleeWeapon;
@@ -183,6 +185,8 @@ public class PlayerInteraction : MonoBehaviour
                             hit.rigidbody.AddForceAtPosition((new Vector3(playerRenderer.flipX ? -1 : 1, 0)) * curr.damage, hit.point, ForceMode2D.Impulse);
                             // Damage
                             hit.transform.GetComponent<EnemyGround>().ApplyDamage(curr.damage * (int) PlayerManager.Instance.DmgAmp());
+                            // Particle
+                            Instantiate(hitPrefab, hit.point, Quaternion.identity, hit.transform);
                         }
                     }
                 }
@@ -206,8 +210,9 @@ public class PlayerInteraction : MonoBehaviour
                             }
                     }
                     // Fire projectile
-                    GameObject newProj = Instantiate(projectilePrefab, transform);
+                    GameObject newProj = Instantiate(projectilePrefab, transform.position, Quaternion.Euler(0, 0, playerRenderer.flipX ? 0 : 180));
                     newProj.GetComponent<PlayerProjectile>().damage = curr.damage;
+                    newProj.GetComponent<PlayerProjectile>().range = curr.range;
                     newProj.GetComponent<Rigidbody2D>().velocity = new Vector3(playerRenderer.flipX ? -1 : 1, 0) * newProj.GetComponent<PlayerProjectile>().moveSpeed;
                 }
             }

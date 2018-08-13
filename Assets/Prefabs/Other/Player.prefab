@@ -187,6 +187,7 @@ MonoBehaviour:
   _strengthPotionMaxDuration: 0
   projectilePrefab: {fileID: 1511176817737220, guid: 6ba001444af68e946a75a7ad6ae60260,
     type: 2}
+  hitPrefab: {fileID: 1604142297409246, guid: 3ed82e94d6ae6544fa2bf22a91b20ee7, type: 2}
 --- !u!212 &212288755768603958
 SpriteRenderer:
   m_ObjectHideFlags: 1
