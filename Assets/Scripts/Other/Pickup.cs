@@ -27,7 +27,7 @@ public class Pickup : MonoBehaviour {
             case InventoryItem.ItemType.Armor:
                 {
                     Armor curr = (Armor)item;
-                    descriptionText.text = curr.itemName.ToUpper() + "\nRESIST: " + curr.damageResistance.ToString();
+                    descriptionText.text = curr.itemName.ToUpper() + "\nRESIST:" + (Mathf.Round(curr.damageResistance * 100f)).ToString() + "%";
                     break;
                 }
             case InventoryItem.ItemType.Key:
@@ -107,17 +107,19 @@ public class Pickup : MonoBehaviour {
         itemRenderer.transform.localScale = new Vector3(enabled ? 2 : 1, enabled ? 2 : 1, 1);
     }
 
-    public void pickupItem()
+    public bool pickupItem()
     {
         // Add to inventory and destroy
         if (InventoryManager.Instance.AddItem(item))
         {
             PickupManager.Instance.removeItem(this);
             Destroy(gameObject);
+            return true;
         }
         else
         {
             Camera.current.GetComponent<CameraMovement>().ApplyShake();
+            return false;
         }
     }
 }
