@@ -205,7 +205,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeedX: 1.2
   _moveSpeedY: 1.2
+  _minDistanceToPlayer: 0
   _damage: 0.05
+  _projectilePrefab: {fileID: 1620664015468358, guid: a3383b7f2b24f0346a018d015eca3226,
+    type: 2}
   _damageInterval: 3
   _maxHealth: 100
 --- !u!212 &212295722761075058
@@ -243,7 +246,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bdbb1f70129b715428fccd532510036e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c6c5cf92c3e816140965375bcbba14df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

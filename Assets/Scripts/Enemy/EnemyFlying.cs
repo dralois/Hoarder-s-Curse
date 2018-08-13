@@ -9,6 +9,8 @@ public class EnemyFlying : MonoBehaviour
     private Collider2D _enemyCollider;
     private Rigidbody2D _enemyRB;
     private float _lastHit;
+    private int _health;
+    private bool _targetInShootableRange;
 
     [Header("Movement")]
     [SerializeField]
@@ -21,11 +23,13 @@ public class EnemyFlying : MonoBehaviour
     [SerializeField]
     private float _damage;
     [SerializeField]
+    private GameObject _projectilePrefab;
+    [SerializeField]
     private float _damageInterval;
     [Header("Health")]
     [SerializeField]
     private int _maxHealth;
-    private int _health;
+
     private void Start()
     {
         // Retrieve the renderer
@@ -37,9 +41,11 @@ public class EnemyFlying : MonoBehaviour
         // Set PlayerTarget to null
         _playerTarget = null;
         // Init the lastHit time to the damageInterval
-        _lastHit = 0f;
+        _lastHit = 0.2f * _damageInterval;
         // Set the current health to maxHealth
         _health = _maxHealth;
+        // Set the target out of Range
+        _targetInShootableRange = false;
 
     }
 
@@ -67,7 +73,8 @@ public class EnemyFlying : MonoBehaviour
                     Move(-playerDirection);
                 else
                     Move(playerDirection);
-                //Attack();
+
+                Attack(playerDirection);
             }
 
             _enemyRenderer.flipX = (playerDirection.x < 0);
@@ -84,14 +91,24 @@ public class EnemyFlying : MonoBehaviour
         _enemyRB.velocity = new Vector2(Math.Sign(direction.x) * _moveSpeedX, Math.Sign(direction.y) * _moveSpeedY);
     }
 
-    public void Attack()
+    private void Attack(Vector2 playerDirection)
     {
         _lastHit -= Time.fixedDeltaTime;
         if (_lastHit <= 0f)
         {
-            PlayerManager.Instance.ApplyDamage(_damage);
+            GameObject firedProjectile = Instantiate(_projectilePrefab, gameObject.transform);
+            firedProjectile.transform.Rotate(Vector3.forward, Vector2.SignedAngle(Vector2.up, playerDirection));
+            firedProjectile.GetComponent<Rigidbody2D>().velocity = playerDirection * firedProjectile.GetComponent<EnemyProjectile>().moveSpeed;
+            Debug.Log(firedProjectile.GetComponent<EnemyProjectile>().moveSpeed);
+            Debug.Log(playerDirection * firedProjectile.GetComponent<EnemyProjectile>().moveSpeed);
+            Debug.Log(firedProjectile.GetComponent<Rigidbody2D>().velocity);
             _lastHit = _damageInterval;
         }
+    }
+
+    public void TargetHit()
+    {
+        PlayerManager.Instance.ApplyDamage(_damage);
     }
 
     public void ResetHitTime()

@@ -11,20 +11,4 @@ public class FlyingEnemyTriggerZoneAttack : MonoBehaviour {
 	void Update () {
 		
 	}
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            gameObject.GetComponentInParent<EnemyFlying>().Attack();
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            gameObject.GetComponentInParent<EnemyFlying>().ResetHitTime();
-        }
-    }
 }
