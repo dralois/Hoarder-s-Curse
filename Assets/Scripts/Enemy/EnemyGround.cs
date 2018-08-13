@@ -50,7 +50,7 @@ public class EnemyGround : MonoBehaviour {
             Vector2 playerDirectionNormalized = new Vector2(_playerTarget.position.x - gameObject.transform.position.x,
                                                   _playerTarget.position.y - gameObject.transform.position.y).normalized;
             
-            _enemyRB.velocity = new Vector2(Math.Sign(playerDirectionNormalized.x) * _moveSpeedX, _enemyRB.velocity.y);
+            Move(playerDirectionNormalized);
 
             _enemyRenderer.flipX = (playerDirectionNormalized.x < 0);
 
@@ -69,6 +69,11 @@ public class EnemyGround : MonoBehaviour {
             _enemyRB.constraints = RigidbodyConstraints2D.FreezeAll;
         }
 	}
+
+    private void Move(Vector2 direction)
+    {
+        _enemyRB.velocity = new Vector2(Math.Sign(direction.x) * _moveSpeedX, _enemyRB.velocity.y);
+    }
 
     public void Attack()
     {

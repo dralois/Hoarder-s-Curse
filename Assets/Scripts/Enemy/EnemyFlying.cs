@@ -15,6 +15,8 @@ public class EnemyFlying : MonoBehaviour
     private float _moveSpeedX;
     [SerializeField]
     private float _moveSpeedY;
+    [SerializeField]
+    private float _minDistanceToPlayer;
     [Header("Damage Properties")]
     [SerializeField]
     private float _damage;
@@ -52,35 +54,34 @@ public class EnemyFlying : MonoBehaviour
             Vector2 playerDirection = new Vector2(_playerTarget.position.x - gameObject.transform.position.x,
                                                   _playerTarget.position.y - gameObject.transform.position.y);
 
-            RaycastHit2D raycastHit = Physics2D.Raycast(gameObject.transform.position, playerDirection, Mathf.Infinity, LayerMask.GetMask("Ground", "Wall", "Player"));
+            RaycastHit2D raycastHit = Physics2D.Raycast(gameObject.transform.position, playerDirection, Mathf.Infinity, LayerMask.GetMask(new[] { "Wall", "Ground", "Default" }));
 
             if (raycastHit.collider.tag != "Player")
             {
                 Vector2 moveDirection = UnityEngine.Random.insideUnitCircle;
-                _enemyRB.velocity = new Vector2(Math.Sign(moveDirection.x) * _moveSpeedX, Math.Sign(moveDirection.y) * _moveSpeedY);
+                Move(moveDirection);
             }
             else
             {
-                _enemyRB.velocity = new Vector2(Math.Sign(playerDirection.x) * _moveSpeedX, _enemyRB.velocity.y);
-                Attack();
+                if (playerDirection.magnitude <= _minDistanceToPlayer)
+                    Move(-playerDirection);
+                else
+                    Move(playerDirection);
+                //Attack();
             }
 
             _enemyRenderer.flipX = (playerDirection.x < 0);
 
-            /*
-            ContactPoint2D[] arr = new ContactPoint2D[10];
-            int allContacts = _enemyCollider.GetContacts(arr);
-            // Count only ground contacts
-            int currContacts = arr.Take(allContacts).Where(curr => curr.collider.tag == "Ground" && (Mathf.Abs(Vector2.Angle(Vector2.up, curr.normal)) >= 1f)).Count();
-
-            if (currContacts != 0)
-                Jump();
-            */
         }
         else
         {
             _enemyRB.constraints = RigidbodyConstraints2D.FreezeAll;
         }
+    }
+
+    private void Move(Vector2 direction)
+    {
+        _enemyRB.velocity = new Vector2(Math.Sign(direction.x) * _moveSpeedX, Math.Sign(direction.y) * _moveSpeedY);
     }
 
     public void Attack()
