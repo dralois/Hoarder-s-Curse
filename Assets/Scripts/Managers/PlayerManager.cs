@@ -3,18 +3,79 @@
 public class PlayerManager : MonoBehaviour
 {
     // Singleton instance
-    private static PlayerManager _instance = null;
-
-    [Header("Stats")]
-    [SerializeField]
-    private float health;
-    [SerializeField]
-    private float reduction;
+    private static PlayerManager _instance = null;    
+    // Vars
+    private float health = 1.0f;
+    private float reduction = 0.0f;
+    private float dmgAmp = 1.0f;
     // Keeps track ingame
-    private PlayerHealthbarUI healthUI;
-
+    private StatsUI statsUI;
+    
     // Keeps track if player can still do stuff
     public bool isAlive { get; private set; }
+
+    private StatsUI PlayerStatsUI
+    {
+        get
+        {
+            if (statsUI == null)
+            {
+                statsUI = FindObjectOfType<StatsUI>();
+            }
+            // Return UI
+            return statsUI;
+        }
+    }
+
+    // Apply a certain amount of damage
+    public void ApplyDamage(float amount)
+    {
+        // Reduce or set to zero
+        if (health - amount > 0)
+        {
+            health -= amount * reduction;
+        }
+        else
+        {
+            health = 0;
+            isAlive = false;
+        }
+        // Set Health
+        PlayerStatsUI.SetHealthRemaining(health);
+    }
+
+    // Sets resistance to a percentage
+    public void setResistance(float resist)
+    {
+        reduction = 1 - resist;
+    }
+
+    // Kills the player instantly
+    public void Kill()
+    {
+        // Reduce health to zero
+        health = 0;
+        PlayerStatsUI.SetHealthRemaining(0);
+        isAlive = false;
+        // ..
+    }
+
+    // Set buffed on/off
+    public void SetBuff(bool enabled)
+    {
+        // En/Disable amp
+        dmgAmp = enabled ? 2.0f : 1.0f;
+        // En/Disable amp UI
+        PlayerStatsUI.SetBuffEnabled(enabled);
+    }
+
+    // Get current damage amplification
+    public float DmgAmp()
+    {
+        return dmgAmp;
+    }
+
+    #region Singleton
 
     public static PlayerManager Instance
     {
@@ -22,7 +83,7 @@ public class PlayerManager : MonoBehaviour
         {
             return _instance;
         }
-    }   
+    }
 
     private void Awake()
     {
@@ -39,35 +100,5 @@ public class PlayerManager : MonoBehaviour
         isAlive = true;
     }
 
-    // Apply a certain amount of damage
-    public void ApplyDamage(float amount)
-    {
-        // Reduce or set to zero
-        if (health - amount > 0)
-        {
-            health -= amount * reduction;
-        }
-        else
-        {
-            health = 0;
-            isAlive = false;
-        }
-        // Update UI
-        if (healthUI == null)
-        {
-            // Find script in scene
-            healthUI = FindObjectOfType<PlayerHealthbarUI>();
-            // If still null return
-            if (healthUI == null)
-                return;
-        }
-        // Set Health
-        healthUI.SetHealthRemaining(health);
-    }
-
-    // Sets resistance to a percentage
-    public void setResistance(float resist)
-    {
-        reduction = 1 - resist;
-    }
+    #endregion
 }

@@ -72,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1351758361694336}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.388, y: 0.521, z: 0}
+  m_LocalPosition: {x: 7.7, y: 2.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4643104870685278}
@@ -121,7 +121,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 5
-  m_Material: {fileID: 6200000, guid: 51ad8c5cc2c8d2b46a925689ea70fa41, type: 2}
+  m_Material: {fileID: 6200000, guid: 1dd19ce38a03b0748a4dc296ee09e6c8, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -168,8 +168,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.46666667, y: 1}
+  m_Offset: {x: 0, y: -0}
+  m_Size: {x: 0.46666667, y: 0.8}
   m_Direction: 0
 --- !u!95 &95864343077548378
 Animator:
@@ -205,6 +205,7 @@ MonoBehaviour:
   _damage: 0.01
   _damageInterval: 2
   _maxHealth: 100
+  _dropList: []
 --- !u!114 &114156658819486196
 MonoBehaviour:
   m_ObjectHideFlags: 1

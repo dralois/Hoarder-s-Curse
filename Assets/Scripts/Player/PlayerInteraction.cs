@@ -117,9 +117,9 @@ public class PlayerInteraction : MonoBehaviour
                         if (!hit.collider.isTrigger)
                         {
                             // Knockback
-                            hit.rigidbody.AddForceAtPosition((new Vector3(playerRenderer.flipX ? -1 : 1, 0)) * curr.damage * 10, hit.point, ForceMode2D.Impulse);
+                            hit.rigidbody.AddForceAtPosition((new Vector3(playerRenderer.flipX ? -1 : 1, 0)) * curr.damage, hit.point, ForceMode2D.Impulse);
                             // Damage
-                            hit.transform.GetComponent<EnemyGround>().ApplyDamage(curr.damage);
+                            hit.transform.GetComponent<EnemyGround>().ApplyDamage(curr.damage * (int) PlayerManager.Instance.DmgAmp());
                         }
                     }
                 }

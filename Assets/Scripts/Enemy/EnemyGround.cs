@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +9,7 @@ public class EnemyGround : MonoBehaviour {
     private Collider2D _enemyCollider;
     private Rigidbody2D _enemyRB;
     private float _lastHit;
+    private float _knockback;
     private int _health;
 
     [Header("Movement")]
@@ -46,7 +46,13 @@ public class EnemyGround : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
+        if (_knockback > 0)
+        {
+            _knockback -= Time.deltaTime;
+            return;
+        }
 
         if (_playerTarget != null)
         {
@@ -57,16 +63,6 @@ public class EnemyGround : MonoBehaviour {
             Move(playerDirectionNormalized);
 
             _enemyRenderer.flipX = (playerDirectionNormalized.x < 0);
-
-            /*
-            ContactPoint2D[] arr = new ContactPoint2D[10];
-            int allContacts = _enemyCollider.GetContacts(arr);
-            // Count only ground contacts
-            int currContacts = arr.Take(allContacts).Where(curr => curr.collider.tag == "Ground" && (Mathf.Abs(Vector2.Angle(Vector2.up, curr.normal)) >= 1f)).Count();
-
-            if (currContacts != 0)
-                Jump();
-            */
         }
         else
         {
@@ -96,6 +92,7 @@ public class EnemyGround : MonoBehaviour {
 
     public void ApplyDamage(int amount)
     {
+        _knockback = .2f;
         // Reduce or set to zero
         if (_health - amount > 0)
         {
