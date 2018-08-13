@@ -23,9 +23,9 @@ GameObject:
   - component: {fileID: 50185744486530920}
   - component: {fileID: 114097102815486338}
   - component: {fileID: 70869136582582734}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 4643104870685278}
   - component: {fileID: 58059420546670496}
   - component: {fileID: 114156658819486196}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TriggerZonePlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4711649974381664}
   - component: {fileID: 58977773599643776}
   - component: {fileID: 114180702155592850}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TriggerZoneAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
