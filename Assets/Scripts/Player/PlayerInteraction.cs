@@ -77,17 +77,20 @@ public class PlayerInteraction : MonoBehaviour
         // On Attack
         if (Input.GetButtonDown("Attack"))
         {
-            // If melee weapon equiped
-            if(currentWeapon.itemType == InventoryItem.ItemType.MeleeWeapon)
+            if(currentWeapon != null)
             {
-                playerAnim.SetTrigger("Attack");
-                //RaycastHit2D[] hits = Physics2D.Raycast(transform.position, );
+                // If melee weapon equiped
+                if(currentWeapon.itemType == InventoryItem.ItemType.MeleeWeapon)
+                {
+                    playerAnim.SetTrigger("Attack");
+                    //RaycastHit2D[] hits = Physics2D.Raycast(transform.position, );
 
-            }
-            // Otherwise has to be ranged weapon
-            else
-            {
+                }
+                // Otherwise has to be ranged weapon
+                else
+                {
                 
+                }
             }
         }
 
